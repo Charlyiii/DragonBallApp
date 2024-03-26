@@ -37,6 +37,26 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
              />
 
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottom_app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            app:fabAlignmentMode="center"
+            app:hideOnScroll="true">
+
+            <!-- ImageButton para controlar la música -->
+            <ImageButton
+                android:id="@+id/music_control_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_music_note_20"
+                app:layout_anchor="@id/bottom_app_bar"/>
+
+            <!-- Agrega aquí otros elementos para la paginación si es necesario -->
+
+        </com.google.android.material.bottomappbar.BottomAppBar>
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

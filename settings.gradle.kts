@@ -23,3 +23,4 @@ rootProject.name = "DragonBallApp"
 include(":app")
 include(":ui")
 include(":domain")
+include(":data")

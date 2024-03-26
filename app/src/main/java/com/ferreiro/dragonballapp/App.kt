@@ -1,4 +1,4 @@
-package com.example.dragonballapp
+package com.ferreiro.dragonballapp
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

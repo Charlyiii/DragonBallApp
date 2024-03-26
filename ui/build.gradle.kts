@@ -55,6 +55,8 @@ val coroutinesVersion = "1.7.3"
 
 dependencies {
 
+    implementation(project(":domain"))
+
     implementation(platform("androidx.compose:compose-bom:2024.02.02"))
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation("androidx.core:core-ktx:1.12.0")
