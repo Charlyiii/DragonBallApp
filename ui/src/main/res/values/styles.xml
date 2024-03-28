@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="DragonBallAppBar" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:fontFamily">@font/saiyan_sans</item>
+        <item name="android:textSize">36sp</item>
+    </style>
+</resources>

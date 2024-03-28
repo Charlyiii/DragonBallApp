@@ -22,6 +22,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:title="Dragon Ball App"
+                app:titleTextAppearance="@style/DragonBallAppBar"
+                app:titleTextColor="@color/yellow_db"
                 app:titleCentered="true">
             </com.google.android.material.appbar.MaterialToolbar>
 
@@ -33,9 +35,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:defaultNavHost="true"
-            app:navGraph="@navigation/nav_graph"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-             />
+            app:navGraph="@navigation/nav_graph" />
 
         <com.google.android.material.bottomappbar.BottomAppBar
             android:id="@+id/bottom_app_bar"

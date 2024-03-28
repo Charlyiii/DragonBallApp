@@ -1,9 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.DragonBallApp" parent="Theme.Material3.Light.NoActionBar">
+        <item name="actionBarStyle">@style/DragonBallAppBar</item>
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/orange_db</item>
+        <item name="android:statusBarColor">@android:color/transparent</item> <!-- Hace la barra de estado transparente -->
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item> <!-- Permite dibujar detrás de la barra de estado -->
     </style>
 
     <style name="Theme.DragonBallApp" parent="Base.Theme.DragonBallApp" />
