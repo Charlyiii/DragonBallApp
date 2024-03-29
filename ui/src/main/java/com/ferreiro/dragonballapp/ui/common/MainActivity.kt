@@ -1,7 +1,6 @@
 package com.ferreiro.dragonballapp.ui.common
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.ImageButton
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -42,10 +41,8 @@ class MainActivity: AppCompatActivity() {
         // Establece el listener de clics para el botón de control de música
         musicControlButton.setOnClickListener {
             if (viewModel.isPlaying) {
-                Log.d("Prueba", "Pause song")
                 viewModel.pauseSong()
             } else {
-                Log.d("Prueba", "Play song")
                 viewModel.playSong()
             }
             updateMusicControlButtonIcon(musicControlButton)

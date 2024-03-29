@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Dragon Ball App</string>
+    <string name="characters_text">Personajes</string>
+    <string name="planets_text">Planetas</string>
+</resources>

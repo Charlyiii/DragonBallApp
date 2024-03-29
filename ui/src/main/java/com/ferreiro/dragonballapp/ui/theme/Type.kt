@@ -30,13 +30,21 @@ val Typography = Typography(
         lineHeight = 24.sp,
         letterSpacing = 0.5.sp
     ),
+    titleSmall = TextStyle(
+        fontFamily = dbz_font,
+        fontWeight = FontWeight.Normal,
+        fontSize = 30.sp,
+        lineHeight = 20.sp,
+        letterSpacing = 0.sp
+    ),
     bodyMedium = TextStyle(
         fontFamily = dbz_font,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
         lineHeight = 20.sp,
         letterSpacing = 0.sp
-    )
+    ),
+
     /* Other default text styles to override
     titleLarge = TextStyle(
         fontFamily = FontFamily.Default,
