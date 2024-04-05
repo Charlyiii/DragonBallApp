@@ -39,7 +39,7 @@ class HomeViewModel @Inject constructor(
                                     _homeItemStateFlow.value += HomeOptionVO(
                                         R.string.characters_text,
                                         R.drawable.characters_img,
-                                        //R.id.action_homeFragment_to_characterFragment
+                                        R.id.action_homeFragment_to_characterListFragment
                                     )
                                 }
 
@@ -48,7 +48,7 @@ class HomeViewModel @Inject constructor(
                                         HomeOptionVO(
                                             R.string.planets_text,
                                             R.drawable.planets_img,
-                                            //R.id.action_homeFragment_to_comicsListFragment
+                                            R.id.action_homeFragment_to_planetListFragment
                                         )
                                 }
                             }

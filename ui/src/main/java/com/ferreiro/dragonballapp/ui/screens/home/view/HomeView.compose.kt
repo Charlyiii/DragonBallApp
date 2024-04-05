@@ -1,8 +1,7 @@
-package com.ferreiro.dragonballapp.ui.screens.home
+package com.ferreiro.dragonballapp.ui.screens.home.view
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -62,7 +61,7 @@ fun HomeViewBody(
             HomeOptionItem(
                 homeOptionVO = homeOptionItem,
                 onClick = {
-                    onClickItem( homeOptionItem.nameResource)
+                    onClickItem( homeOptionItem.destinationResource)
                 })
         }
     }
@@ -73,8 +72,8 @@ fun HomeViewBody(
 fun HomeViewPreview() {
     HomeView(
         listOf(
-            HomeOptionVO(R.string.characters_text, R.drawable.characters_img),
-            HomeOptionVO(R.string.planets_text, R.drawable.planets_img)
+            HomeOptionVO(R.string.characters_text, R.drawable.characters_img, R.id.action_homeFragment_to_characterListFragment),
+            HomeOptionVO(R.string.planets_text, R.drawable.planets_img, R.id.action_homeFragment_to_characterListFragment)
         )
     ){}
 }

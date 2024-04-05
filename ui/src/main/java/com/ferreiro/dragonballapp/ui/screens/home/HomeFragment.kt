@@ -10,6 +10,8 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.ferreiro.dragonballapp.ui.screens.home.view.HomeView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -28,8 +30,8 @@ class HomeFragment : Fragment() {
                 viewModel.homeItemStateFlow.collectLatest { homeItemState ->
                     setContent {
                         MaterialTheme {
-                            HomeView(homeItemState){ itemTitle ->
-                                Toast.makeText(context, "Se ha hecho click en: ${context.getString(itemTitle)}", Toast.LENGTH_LONG).show()
+                            HomeView(homeItemState){ destination ->
+                                findNavController().navigate(destination)
                             }
                         }
                     }

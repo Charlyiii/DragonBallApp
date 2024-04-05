@@ -19,21 +19,21 @@ val Typography = Typography(
     titleMedium = TextStyle(
         fontFamily = dbz_font,
         fontWeight = FontWeight.Normal,
-        fontSize = 20.sp,
+        fontSize = 24.sp,
         lineHeight = 24.sp,
         letterSpacing = 0.5.sp
     ),
     titleLarge = TextStyle(
         fontFamily = dbz_font,
         fontWeight = FontWeight.Bold,
-        fontSize = 22.sp,
+        fontSize = 30.sp,
         lineHeight = 24.sp,
         letterSpacing = 0.5.sp
     ),
     titleSmall = TextStyle(
         fontFamily = dbz_font,
         fontWeight = FontWeight.Normal,
-        fontSize = 30.sp,
+        fontSize = 20.sp,
         lineHeight = 20.sp,
         letterSpacing = 0.sp
     ),

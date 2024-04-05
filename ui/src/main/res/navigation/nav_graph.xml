@@ -7,5 +7,22 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.ferreiro.dragonballapp.ui.screens.home.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_characterListFragment"
+            app:destination="@id/characterListFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_planetListFragment"
+            app:destination="@id/planetListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/characterListFragment"
+        android:name="com.ferreiro.dragonballapp.ui.screens.characters.list.CharacterListFragment"
+        android:label="fragment_character_list"
+        tools:layout="@layout/fragment_character_list" />
+    <fragment
+        android:id="@+id/planetListFragment"
+        android:name="com.ferreiro.dragonballapp.ui.screens.planets.list.PlanetListFragment"
+        android:label="fragment_planet_list"
+        tools:layout="@layout/fragment_planet_list" />
 </navigation>

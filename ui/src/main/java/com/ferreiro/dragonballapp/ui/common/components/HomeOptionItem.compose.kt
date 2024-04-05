@@ -54,7 +54,7 @@ fun HomeOptionItem(
             Text(
                 modifier = Modifier.align(Alignment.CenterHorizontally),
                 text = stringResource(id = homeOptionVO.nameResource),
-                style = Typography.titleSmall,
+                style = Typography.titleLarge,
             )
         }
     }
@@ -66,7 +66,8 @@ fun HomeOptionItemPreview() {
     HomeOptionItem(
         homeOptionVO = HomeOptionVO(
             nameResource = R.string.characters_text,
-            imgResource = R.drawable.planets_img
+            imgResource = R.drawable.characters_img,
+            destinationResource = R.id.action_homeFragment_to_characterListFragment
         ),
         onClick = {}
     )
