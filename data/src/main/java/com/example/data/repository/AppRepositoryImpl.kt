@@ -1,7 +1,6 @@
 package com.example.data.repository
 
 import com.example.data.source.HomeDataSource
-import com.ferreiro.dragonballapp.domain.model.SongModel
 import com.ferreiro.dragonballapp.domain.model.error.ErrorModel
 import com.ferreiro.dragonballapp.domain.repository.AppRepository
 import com.ferreiro.dragonballapp.domain.utils.Either

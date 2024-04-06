@@ -1,8 +1,9 @@
 package com.ferreiro.dragonballapp.ui.common.components
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -17,13 +18,10 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.example.ui.R
 import com.ferreiro.dragonballapp.domain.model.Affiliation
 import com.ferreiro.dragonballapp.domain.model.CharacterModel
@@ -42,59 +40,84 @@ fun CharacterListItem(
             .padding(10.dp)
             .shadow(5.dp)
     ) {
-        //TODO Change for AsyncImage when API is ready and delete local image
-        Image(
-            modifier = Modifier
-                .background(
-                    brush = getCharacterGradient(character.affiliation),
-                )
-                .fillMaxSize()
-                .weight(1f)
-                .padding(20.dp),
-            painter = painterResource(character.image),
-            contentDescription = "${character.characterName} image",
-        )
-        Column(
-            modifier = Modifier
-                .weight(0.5f)
-                .fillMaxSize(),
-        ) {
-            //TODO Change for Text when API is ready and delete local text
-            Text(
-                modifier = Modifier
-                    .padding(4.dp)
-                    .align(Alignment.CenterHorizontally),
-                text = character.characterName,
-                style = Typography.titleMedium
+        ListItemHeader(character)
+        ListItemBody(character)
+        HorizontalDivider()
+        ListItemFooter(character)
+
+
+    }
+}
+
+@Composable
+fun ColumnScope.ListItemHeader(character: CharacterModel){
+    AsyncImage(
+        modifier = Modifier
+            .background(
+                brush = getCharacterGradient(character.affiliation),
             )
-            Text(
-                modifier = Modifier
-                    .padding(4.dp),
-                text = "${character.race}",
-                style = Typography.titleSmall,
-                color = Color(0xFFFFA000),
+            .fillMaxSize()
+            .weight(1f)
+            .padding(20.dp),
+        model = character.image ,
+        contentDescription = "${character.characterName} image",
+        error = painterResource(id = R.drawable.goku_preview)
+    )
+}
+
+@Composable
+fun ColumnScope.ListItemBody(character: CharacterModel) {
+    Column(
+        modifier = Modifier
+            .padding(4.dp)
+            .weight(0.5f)
+            .fillMaxSize(),
+    ) {
+        //TODO Change for Text when API is ready and delete local text
+        Text(
+            modifier = Modifier
+                .padding(4.dp)
+                .align(Alignment.CenterHorizontally),
+            text = character.characterName,
+            style = Typography.titleMedium
+        )
+        Text(
+            modifier = Modifier
+                .padding(4.dp),
+            text = "${character.race}",
+            style = Typography.titleSmall,
+            color = Color(0xFFFFA000),
 
             )
-            Text(
-                modifier = Modifier
-                    .padding(4.dp),
-                text = "Base KI: ${character.ki}",
-                fontStyle = FontStyle.Italic,
-            )
-            Text(
-                modifier = Modifier
-                    .padding(4.dp),
-                text = "Max. KI: ${character.maxKi}",
-                fontStyle = FontStyle.Italic,
-            )
-            HorizontalDivider()
-            Text(
-                modifier = Modifier
-                    .padding(4.dp)
-                    .align(Alignment.CenterHorizontally),
-                text = "${character.affiliation.toReadableString()}"
-            )
-        }
+        Text(
+            modifier = Modifier
+                .padding(4.dp),
+            text = "Base KI: ${character.ki}",
+            fontStyle = FontStyle.Italic,
+        )
+        Text(
+            modifier = Modifier
+                .padding(4.dp),
+            text = "Max. KI: ${character.maxKi}",
+            fontStyle = FontStyle.Italic,
+        )
+    }
+}
+
+@Composable
+fun ColumnScope.ListItemFooter(character: CharacterModel) {
+    Column(
+        modifier = Modifier
+            .weight(0.20f)
+            .fillMaxSize(),
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(
+            modifier = Modifier
+                .padding(4.dp)
+                .align(Alignment.CenterHorizontally),
+            text = "${character.affiliation.toReadableString()}"
+        )
     }
 }
 
@@ -121,7 +144,7 @@ fun CharacterListItemPreview() {
     CharacterListItem(
         character = CharacterModel(
             id = 0,
-            image = R.drawable.goku_preview,
+            image = "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699044374/hlpy6q013uw3itl5jzic.webp",
             race = "Saiyan",
             gender = "Masculino",
             characterName = "Goku",

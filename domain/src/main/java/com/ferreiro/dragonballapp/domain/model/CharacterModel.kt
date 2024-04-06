@@ -2,7 +2,7 @@ package com.ferreiro.dragonballapp.domain.model
 
 data class CharacterModel(
     val id: Int,
-    val image: Int, //TODO change to string
+    val image: String,
     val race: String,
     val gender: String,
     val characterName: String,
