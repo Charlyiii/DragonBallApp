@@ -10,7 +10,7 @@ data class CharacterModel(
     val maxKi: String,
     val affiliation: Affiliation,
     val description: String,
-    val originPlanet: PlanetModel,
+    val originPlanet: PlanetModel? = null,
     val transformations: List<TransformationModel>? = null,
 )
 

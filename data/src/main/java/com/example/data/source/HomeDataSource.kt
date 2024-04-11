@@ -1,6 +1,6 @@
 package com.example.data.source
 
-import com.example.data.common.SongList
+import com.example.data.model.common.SongList
 import com.ferreiro.dragonballapp.domain.model.HomeOptionType
 import com.ferreiro.dragonballapp.domain.model.SongModel
 import com.ferreiro.dragonballapp.domain.model.error.ErrorModel

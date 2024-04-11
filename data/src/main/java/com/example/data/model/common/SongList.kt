@@ -1,4 +1,4 @@
-package com.example.data.common
+package com.example.data.model.common
 
 import com.ferreiro.dragonballapp.domain.model.SongModel
 

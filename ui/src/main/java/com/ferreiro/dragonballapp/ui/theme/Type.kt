@@ -19,8 +19,8 @@ val Typography = Typography(
     titleMedium = TextStyle(
         fontFamily = dbz_font,
         fontWeight = FontWeight.Normal,
-        fontSize = 24.sp,
-        lineHeight = 24.sp,
+        fontSize = 22.sp,
+        lineHeight = 22.sp,
         letterSpacing = 0.5.sp
     ),
     titleLarge = TextStyle(

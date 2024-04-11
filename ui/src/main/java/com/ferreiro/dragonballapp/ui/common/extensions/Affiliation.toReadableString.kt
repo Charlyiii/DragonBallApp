@@ -4,6 +4,7 @@ import com.ferreiro.dragonballapp.domain.model.Affiliation
 
 fun Affiliation.toReadableString(): String {
     return when (this) {
+        //TODO Translate strings
         Affiliation.Z_FIGHTER -> "Z Fighter"
         Affiliation.RED_RIBBON_ARMY -> "Red Ribbon Army"
         Affiliation.NAMEKIAN_WARRIOR -> "Namekian Warrior"
@@ -14,6 +15,6 @@ fun Affiliation.toReadableString(): String {
         Affiliation.ASSISTANT_OF_BEERUS -> "Assistant of Beerus"
         Affiliation.GOD -> "God"
         Affiliation.VILLAIN -> "Villain"
-        Affiliation.OTHER -> ""
+        Affiliation.OTHER -> "Other"
     }
 }

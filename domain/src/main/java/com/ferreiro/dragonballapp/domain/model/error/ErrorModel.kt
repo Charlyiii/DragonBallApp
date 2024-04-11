@@ -1,4 +1,5 @@
 package com.ferreiro.dragonballapp.domain.model.error
 
-interface ErrorModel {
+sealed interface ErrorModel {
+    data class CommonError(val message: String) : ErrorModel
 }

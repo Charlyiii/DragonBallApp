@@ -21,6 +21,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.ui.R
 import com.ferreiro.dragonballapp.domain.model.Affiliation
@@ -29,6 +30,7 @@ import com.ferreiro.dragonballapp.domain.model.PlanetModel
 import com.ferreiro.dragonballapp.ui.common.extensions.toReadableString
 import com.ferreiro.dragonballapp.ui.theme.Typography
 
+//TODO Fix centering of text when there are more than one line
 @Composable
 fun CharacterListItem(
     character: CharacterModel
@@ -61,7 +63,7 @@ fun ColumnScope.ListItemHeader(character: CharacterModel){
             .padding(20.dp),
         model = character.image ,
         contentDescription = "${character.characterName} image",
-        error = painterResource(id = R.drawable.goku_preview)
+        error = painterResource(id = R.drawable.no_image)
     )
 }
 
@@ -73,7 +75,6 @@ fun ColumnScope.ListItemBody(character: CharacterModel) {
             .weight(0.5f)
             .fillMaxSize(),
     ) {
-        //TODO Change for Text when API is ready and delete local text
         Text(
             modifier = Modifier
                 .padding(4.dp)
@@ -94,12 +95,14 @@ fun ColumnScope.ListItemBody(character: CharacterModel) {
                 .padding(4.dp),
             text = "Base KI: ${character.ki}",
             fontStyle = FontStyle.Italic,
+            fontSize = 10.sp
         )
         Text(
             modifier = Modifier
                 .padding(4.dp),
             text = "Max. KI: ${character.maxKi}",
             fontStyle = FontStyle.Italic,
+            fontSize = 10.sp
         )
     }
 }

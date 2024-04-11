@@ -13,7 +13,7 @@ import com.ferreiro.dragonballapp.domain.model.CharacterModel
 import com.ferreiro.dragonballapp.domain.model.PlanetModel
 import com.ferreiro.dragonballapp.ui.common.components.CharacterListItem
 
-//TODO Pages
+//TODO Pages (en notas), fix design issues, paddings, margins, etc
 @Composable
 fun CharacterListView(
     characterList: List<CharacterModel>,
@@ -66,4 +66,3 @@ val characterMock = CharacterModel(
         isDestroyed = false
     )
 )
-
