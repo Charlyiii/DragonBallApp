@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -19,6 +20,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -30,7 +32,6 @@ import com.ferreiro.dragonballapp.domain.model.PlanetModel
 import com.ferreiro.dragonballapp.ui.common.extensions.toReadableString
 import com.ferreiro.dragonballapp.ui.theme.Typography
 
-//TODO Fix centering of text when there are more than one line
 @Composable
 fun CharacterListItem(
     character: CharacterModel
@@ -78,9 +79,11 @@ fun ColumnScope.ListItemBody(character: CharacterModel) {
         Text(
             modifier = Modifier
                 .padding(4.dp)
-                .align(Alignment.CenterHorizontally),
+                .fillMaxWidth(),
             text = character.characterName,
-            style = Typography.titleMedium
+            style = Typography.titleMedium,
+            textAlign = TextAlign.Center,
+            maxLines = 1,
         )
         Text(
             modifier = Modifier

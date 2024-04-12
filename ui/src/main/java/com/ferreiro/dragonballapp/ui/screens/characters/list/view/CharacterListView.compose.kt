@@ -13,13 +13,13 @@ import com.ferreiro.dragonballapp.domain.model.CharacterModel
 import com.ferreiro.dragonballapp.domain.model.PlanetModel
 import com.ferreiro.dragonballapp.ui.common.components.CharacterListItem
 
-//TODO Pages (en notas), fix design issues, paddings, margins, etc
+//TODO Pages (en notas)
 @Composable
 fun CharacterListView(
     characterList: List<CharacterModel>,
 ) {
     LazyVerticalGrid(
-        modifier = Modifier.padding(10.dp),
+        modifier = Modifier.padding(start = 10.dp, end = 10.dp, bottom = 50.dp),
         columns = GridCells.Fixed(2),
     ) {
         items(characterList) { character ->
