@@ -1,6 +1,7 @@
 package com.ferreiro.dragonballapp.ui.common
 
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageButton
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.ui.R
 import com.example.ui.databinding.ActivityMainBinding
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.bottomappbar.BottomAppBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -63,6 +65,24 @@ class MainActivity: AppCompatActivity() {
         window.statusBarColor = ContextCompat.getColor(this, R.color.orange_db)
         window.navigationBarColor = ContextCompat.getColor(this, R.color.orange_db)
         setSupportActionBar(toolbar)
+    }
+
+    fun setupBottomAppBar(isVisible: Boolean, binding: ActivityMainBinding = this.binding) {
+        binding.bottomAppBar.apply {
+            visibility = when (isVisible) {
+                true -> View.VISIBLE
+                false -> View.GONE
+            }
+        }
+    }
+
+    fun setupTopAppBar(isVisible: Boolean, binding: ActivityMainBinding = this.binding) {
+        binding.toolbar.apply {
+            visibility = when (isVisible) {
+                true -> View.VISIBLE
+                false -> View.GONE
+            }
+        }
     }
 
     override fun onDestroy() {

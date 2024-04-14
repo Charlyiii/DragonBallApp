@@ -19,7 +19,7 @@ fun CharacterListView(
     characterList: List<CharacterModel>,
 ) {
     LazyVerticalGrid(
-        modifier = Modifier.padding(start = 10.dp, end = 10.dp, bottom = 50.dp),
+        modifier = Modifier.padding(horizontal = 10.dp),
         columns = GridCells.Fixed(2),
     ) {
         items(characterList) { character ->
