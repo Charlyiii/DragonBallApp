@@ -34,7 +34,11 @@ class CharacterListFragment : Fragment() {
                     setContent {
                         MaterialTheme {
                             when (characterListState) {
-                                is CharacterListState.Success -> CharacterListView(characterList = characterListState.characterList)
+                                is CharacterListState.Success -> CharacterListView(
+                                    characterList = characterListState.characterList,
+                                    hideTopAppBar = { hideTopAppBar() },
+                                    showTopAppBar = { showTopAppBar() }
+                                )
 
                                 //TODO:  Implementar manejo de errores
                                 is CharacterListState.Error -> {
@@ -66,7 +70,6 @@ class CharacterListFragment : Fragment() {
     }
 
     //TODO probar a hacer que las barras solo se oculten al hacer scroll
-    //TODO search y filtros
     private fun setupTopAppBar(titleOfScreen: String, withBackButton: Boolean) {
         (activity as MainActivity).findViewById<MaterialToolbar>(R.id.toolbar).apply {
             title = titleOfScreen
@@ -90,5 +93,12 @@ class CharacterListFragment : Fragment() {
     private fun showBottomAppBar() {
         (requireActivity() as? MainActivity)?.setupBottomAppBar(isVisible = true)
 
+    }
+    private fun hideTopAppBar() {
+        (requireActivity() as? MainActivity)?.setupTopAppBar(isVisible = false)
+    }
+
+    private fun showTopAppBar() {
+        (requireActivity() as? MainActivity)?.setupTopAppBar(isVisible = true)
     }
 }

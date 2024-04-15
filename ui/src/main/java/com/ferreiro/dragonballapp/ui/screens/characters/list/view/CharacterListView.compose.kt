@@ -4,7 +4,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -12,13 +15,32 @@ import com.ferreiro.dragonballapp.domain.model.Affiliation
 import com.ferreiro.dragonballapp.domain.model.CharacterModel
 import com.ferreiro.dragonballapp.domain.model.PlanetModel
 import com.ferreiro.dragonballapp.ui.common.components.CharacterListItem
+import androidx.compose.runtime.remember
 
 //TODO Pages (en notas)
+//TODO Hacer que la appBar se esconda más suave
 @Composable
 fun CharacterListView(
     characterList: List<CharacterModel>,
+    hideTopAppBar: () -> Unit = {},
+    showTopAppBar: () -> Unit = {}
 ) {
+    val scrollState = rememberLazyGridState()
+
+    val showTopAppBarState by remember {
+        derivedStateOf {
+            scrollState.firstVisibleItemIndex > 0
+        }
+    }
+
+    if(showTopAppBarState) {
+        hideTopAppBar()
+    } else {
+        showTopAppBar()
+    }
+
     LazyVerticalGrid(
+        state = scrollState,
         modifier = Modifier.padding(horizontal = 10.dp),
         columns = GridCells.Fixed(2),
     ) {
