@@ -23,7 +23,8 @@ import androidx.compose.runtime.remember
 fun CharacterListView(
     characterList: List<CharacterModel>,
     hideTopAppBar: () -> Unit = {},
-    showTopAppBar: () -> Unit = {}
+    showTopAppBar: () -> Unit = {},
+    onClickItem: (CharacterModel) -> Unit = {}
 ) {
     val scrollState = rememberLazyGridState()
 
@@ -46,7 +47,8 @@ fun CharacterListView(
     ) {
         items(characterList) { character ->
             CharacterListItem(
-                character = character
+                character = character,
+                onClickItem = onClickItem
             )
         }
     }

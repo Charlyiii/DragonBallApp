@@ -11,6 +11,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.ui.R
 import com.ferreiro.dragonballapp.ui.common.MainActivity
 import com.ferreiro.dragonballapp.ui.common.components.LoadingItem
@@ -38,7 +39,13 @@ class CharacterListFragment : Fragment() {
                                     characterList = characterListState.characterList,
                                     hideTopAppBar = { hideTopAppBar() },
                                     showTopAppBar = { showTopAppBar() }
-                                )
+                                ){
+                                    val characterID = it.id
+                                    Toast.makeText(context, "Character ID: $characterID", Toast.LENGTH_SHORT).show()
+                                    findNavController().navigate(
+                                        CharacterListFragmentDirections.actionCharacterListFragmentToCharacterDetailFragment()
+                                    )
+                                }
 
                                 //TODO:  Implementar manejo de errores
                                 is CharacterListState.Error -> {

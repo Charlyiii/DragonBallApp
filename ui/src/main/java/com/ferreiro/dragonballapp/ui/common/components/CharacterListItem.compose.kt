@@ -34,14 +34,16 @@ import com.ferreiro.dragonballapp.ui.theme.Typography
 
 @Composable
 fun CharacterListItem(
-    character: CharacterModel
+    character: CharacterModel,
+    onClickItem: (CharacterModel) -> Unit = {}
 ) {
     Card(
         modifier = Modifier
             .height(500.dp)
             .width(175.dp)
             .padding(10.dp)
-            .shadow(5.dp)
+            .shadow(5.dp),
+        onClick = { onClickItem(character) }
     ) {
         ListItemHeader(character)
         ListItemBody(character)
