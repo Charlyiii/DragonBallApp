@@ -32,4 +32,20 @@ class CharactersRepositoryImpl @Inject constructor(
             }
         }.flowOn(Dispatchers.IO)
     }
+
+    override fun getCharacterById(characterId: Int): Flow<Either<CharacterModel, ErrorModel>> {
+        return flow {
+            when (val result = characterDataSource.getCharacterByID(characterId)) {
+                is Either.Success -> {
+                    val characterModel = result.data.toCharacterModel()
+                    emit(Either.Success(characterModel))
+                }
+
+                is Either.Error -> {
+                    val errorModel = result.error
+                    emit(Either.Error(errorModel))
+                }
+            }
+        }.flowOn(Dispatchers.IO)
+    }
 }

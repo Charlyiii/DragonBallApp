@@ -1,12 +1,14 @@
 package com.example.data.model.character
 
 import com.example.data.common.extensions.toAffiliationEnum
+import com.example.data.model.planet.PlanetDTO
+import com.example.data.model.planet.toPlanetModel
 import com.ferreiro.dragonballapp.domain.model.CharacterModel
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CharacterListItemDTO(
+data class CharacterByIDResponseDTO(
     @SerialName("affiliation") val affiliation: String,
     @SerialName("deletedAt") val deletedAt: Long?,
     @SerialName("description") val description: String,
@@ -16,10 +18,12 @@ data class CharacterListItemDTO(
     @SerialName("ki") val ki: String,
     @SerialName("maxKi") val maxKi: String,
     @SerialName("name") val name: String,
-    @SerialName("race") val race: String
+    @SerialName("race") val race: String,
+    @SerialName("originPlanet") val originPlanet: PlanetDTO,
+    @SerialName("transformations") val transformations: List<TransformationDTO>
 )
 
-fun CharacterListItemDTO.toCharacterModel(): CharacterModel {
+fun CharacterByIDResponseDTO.toCharacterModel(): CharacterModel {
     return CharacterModel(
         id = id,
         image = image,
@@ -29,6 +33,8 @@ fun CharacterListItemDTO.toCharacterModel(): CharacterModel {
         ki = ki,
         maxKi = maxKi,
         affiliation = affiliation.toAffiliationEnum(),
-        description = description
+        description = description,
+        originPlanet = originPlanet.toPlanetModel(),
+        transformations = transformations.map { it.toTransformationModel() }
     )
 }

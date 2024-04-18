@@ -43,7 +43,9 @@ class CharacterListFragment : Fragment() {
                                     val characterID = it.id
                                     Toast.makeText(context, "Character ID: $characterID", Toast.LENGTH_SHORT).show()
                                     findNavController().navigate(
-                                        CharacterListFragmentDirections.actionCharacterListFragmentToCharacterDetailFragment()
+                                        CharacterListFragmentDirections.actionCharacterListFragmentToCharacterDetailFragment(
+                                            characterId = characterID
+                                        )
                                     )
                                 }
 

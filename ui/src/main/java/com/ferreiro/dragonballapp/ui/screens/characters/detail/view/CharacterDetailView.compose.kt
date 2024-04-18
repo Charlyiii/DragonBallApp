@@ -43,7 +43,11 @@ fun ColumnScope.CharacterDetailHeader(character: CharacterModel) {
             .fillMaxWidth()
             .background(color = Color.Yellow)
     ) {
-
+        Text(
+            text = character.characterName,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.padding(16.dp),
+        )
     }
 }
 

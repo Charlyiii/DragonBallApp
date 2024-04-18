@@ -7,4 +7,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface CharactersRepository {
     fun getCharacters(): Flow<Either<List<CharacterModel>, ErrorModel>>
+    fun getCharacterById(characterId: Int): Flow<Either<CharacterModel, ErrorModel>>
 }

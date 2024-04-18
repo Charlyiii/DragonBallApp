@@ -6,5 +6,4 @@ data class PlanetModel(
     val isDestroyed: Boolean,
     val description: String,
     val image: String? = null,
-    val characters: List<CharacterModel>? = null,
 )
