@@ -1,14 +1,13 @@
 package com.ferreiro.dragonballapp.ui.screens.characters.list
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.platform.ComposeView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -16,7 +15,11 @@ import com.example.ui.R
 import com.ferreiro.dragonballapp.ui.common.MainActivity
 import com.ferreiro.dragonballapp.ui.common.components.LoadingItem
 import com.ferreiro.dragonballapp.ui.screens.characters.list.view.CharacterListView
-import com.google.android.material.appbar.MaterialToolbar
+import com.ferreiro.dragonballapp.ui.utils.hideBottomAppBar
+import com.ferreiro.dragonballapp.ui.utils.hideTopAppBar
+import com.ferreiro.dragonballapp.ui.utils.setupTopAppBar
+import com.ferreiro.dragonballapp.ui.utils.showBottomAppBar
+import com.ferreiro.dragonballapp.ui.utils.showTopAppBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -37,8 +40,8 @@ class CharacterListFragment : Fragment() {
                             when (characterListState) {
                                 is CharacterListState.Success -> CharacterListView(
                                     characterList = characterListState.characterList,
-                                    hideTopAppBar = { hideTopAppBar() },
-                                    showTopAppBar = { showTopAppBar() }
+                                    hideTopAppBar = { hideTopAppBar(activity as MainActivity) },
+                                    showTopAppBar = { showTopAppBar(activity as MainActivity) }
                                 ){
                                     val characterID = it.id
                                     Toast.makeText(context, "Character ID: $characterID", Toast.LENGTH_SHORT).show()
@@ -68,46 +71,14 @@ class CharacterListFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupTopAppBar(getString(R.string.characters_text), true)
-        hideBottomAppBar()
+        setupTopAppBar(getString(R.string.characters_text), true, activity = activity as MainActivity)
+        hideBottomAppBar(activity as MainActivity)
     }
 
     override fun onDestroyView() {
-        setupTopAppBar(getString(R.string.app_name), false)
-        showBottomAppBar()
+        setupTopAppBar (getString(R.string.app_name), false, activity = activity as MainActivity)
+        showBottomAppBar(activity as MainActivity)
         super.onDestroyView()
     }
-
     //TODO probar a hacer que las barras solo se oculten al hacer scroll
-    private fun setupTopAppBar(titleOfScreen: String, withBackButton: Boolean) {
-        (activity as MainActivity).findViewById<MaterialToolbar>(R.id.toolbar).apply {
-            title = titleOfScreen
-
-            if (withBackButton) {
-                setNavigationIcon(R.drawable.ic_arrow_back)
-                setNavigationOnClickListener {
-                    activity?.onBackPressed()
-                }
-            } else {
-                navigationIcon = null
-                menu.clear()
-            }
-        }
-    }
-
-    private fun hideBottomAppBar() {
-        (requireActivity() as? MainActivity)?.setupBottomAppBar(isVisible = false)
-    }
-
-    private fun showBottomAppBar() {
-        (requireActivity() as? MainActivity)?.setupBottomAppBar(isVisible = true)
-
-    }
-    private fun hideTopAppBar() {
-        (requireActivity() as? MainActivity)?.setupTopAppBar(isVisible = false)
-    }
-
-    private fun showTopAppBar() {
-        (requireActivity() as? MainActivity)?.setupTopAppBar(isVisible = true)
-    }
 }

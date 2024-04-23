@@ -11,7 +11,6 @@ import androidx.lifecycle.lifecycleScope
 import com.example.ui.R
 import com.example.ui.databinding.ActivityMainBinding
 import com.google.android.material.appbar.MaterialToolbar
-import com.google.android.material.bottomappbar.BottomAppBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

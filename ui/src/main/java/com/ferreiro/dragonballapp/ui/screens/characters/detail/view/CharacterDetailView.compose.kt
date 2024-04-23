@@ -1,19 +1,20 @@
 package com.ferreiro.dragonballapp.ui.screens.characters.detail.view
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
-
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
@@ -23,16 +24,20 @@ import com.example.ui.R
 import com.ferreiro.dragonballapp.domain.model.Affiliation
 import com.ferreiro.dragonballapp.domain.model.CharacterModel
 import com.ferreiro.dragonballapp.domain.model.PlanetModel
+import com.ferreiro.dragonballapp.domain.model.TransformationModel
+import com.ferreiro.dragonballapp.ui.common.components.TransformationItemView
+import com.ferreiro.dragonballapp.ui.theme.Typography
 
 
 @Composable
-fun CharacterDetailView(character: CharacterModel) {
+fun CharacterDetailView(
+    character: CharacterModel,
+) {
     Column {
         CharacterDetailHeader(character)
         CharacterDetailBody(character)
-        CharacterDetailFooter(character)
+        CharacterDetailFooter(character.transformations)
     }
-
 }
 
 @Composable
@@ -68,14 +73,39 @@ fun ColumnScope.CharacterDetailBody(character: CharacterModel) {
 }
 
 @Composable
-fun ColumnScope.CharacterDetailFooter(character: CharacterModel) {
-    Box(
+fun ColumnScope.CharacterDetailFooter(transformationList: List<TransformationModel>?) {
+    Column(
         modifier = Modifier
             .weight(0.5f)
-            .fillMaxWidth()
-            .background(color = Color.Red)
+            .background(color = Color.White)
     ) {
+        Text(
+            modifier = Modifier
+                .padding(15.dp)
+                .fillMaxWidth(),
+            text = "Transformations",
+            textAlign = TextAlign.Center,
+            style = Typography.titleLarge
+        )
 
+        transformationList?.takeIf { it.isNotEmpty() }?.let { list ->
+            LazyRow(
+                contentPadding = PaddingValues(start = 16.dp),
+                modifier = Modifier.padding(bottom = 16.dp),
+            ) {
+                items(list) { transformation ->
+                    TransformationItemView(
+                        transformation = transformation
+                    )
+                    Spacer(modifier = Modifier.width(16.dp))
+                }
+            }
+        } ?: Text(
+            modifier = Modifier.fillMaxWidth(),
+            text = "No transformations available",
+            textAlign = TextAlign.Center,
+            style = Typography.bodyLarge
+        )
     }
 }
 
@@ -99,6 +129,32 @@ fun CharacterDetailViewPreview() {
                 description = "The planet where Goku was born",
                 isDestroyed = false
             ),
+            transformations = listOf(
+                TransformationModel(
+                    id = 0,
+                    name = "Super Saiyan",
+                    image = "",
+                    ki = "1000"
+                ),
+                TransformationModel(
+                    id = 1,
+                    name = "Super Saiyan 2",
+                    image = "",
+                    ki = "2000"
+                ),
+                TransformationModel(
+                    id = 2,
+                    name = "Super Saiyan 3",
+                    image = "",
+                    ki = "3000"
+                ),
+                TransformationModel(
+                    id = 3,
+                    name = "Super Saiyan God",
+                    image = "",
+                    ki = "4000"
+                )
+            )
         )
     )
 }
