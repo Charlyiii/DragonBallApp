@@ -15,6 +15,7 @@ import com.ferreiro.dragonballapp.ui.common.components.LoadingItem
 import com.ferreiro.dragonballapp.ui.screens.characters.detail.view.CharacterDetailView
 import com.ferreiro.dragonballapp.ui.utils.hideBottomAppBar
 import com.ferreiro.dragonballapp.ui.utils.setupTopAppBar
+import com.ferreiro.dragonballapp.ui.utils.showTopAppBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -53,7 +54,7 @@ class CharacterDetailFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        showTopAppBar(activity as MainActivity)
         hideBottomAppBar(activity as MainActivity)
-
     }
 }

@@ -19,7 +19,7 @@ val Typography = Typography(
     titleMedium = TextStyle(
         fontFamily = dbz_font,
         fontWeight = FontWeight.Normal,
-        fontSize = 18.sp,
+        fontSize = 26.sp,
         lineHeight = 22.sp,
         letterSpacing = 0.5.sp
     ),
@@ -55,6 +55,12 @@ val Typography = Typography(
         fontFamily = dbz_font,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
+        lineHeight = 20.sp,
+        letterSpacing = 0.sp
+    ),
+    labelLarge = TextStyle(
+        fontWeight = FontWeight.Bold,
+        fontSize = 26.sp,
         lineHeight = 20.sp,
         letterSpacing = 0.sp
     ),
