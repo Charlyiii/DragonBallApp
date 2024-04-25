@@ -10,7 +10,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class CharacterByIDResponseDTO(
     @SerialName("affiliation") val affiliation: String,
-    @SerialName("deletedAt") val deletedAt: Long?,
     @SerialName("description") val description: String,
     @SerialName("gender") val gender: String,
     @SerialName("id") val id: Int,

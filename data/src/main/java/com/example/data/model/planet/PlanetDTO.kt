@@ -10,8 +10,7 @@ data class PlanetDTO(
    @SerialName ("name") val name: String,
    @SerialName ("isDestroyed") val isDestroyed: Boolean,
    @SerialName ("description") val description: String,
-   @SerialName ("image") val image: String,
-   @SerialName ("deletedAt") val deletedAt: Long?
+   @SerialName ("image") val image: String
 )
 
 fun PlanetDTO.toPlanetModel(): PlanetModel {

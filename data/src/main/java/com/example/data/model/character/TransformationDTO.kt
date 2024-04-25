@@ -10,7 +10,6 @@ data class TransformationDTO(
     @SerialName("name") val name: String,
     @SerialName("image") val image: String,
     @SerialName("ki") val ki: String,
-    @SerialName("deletedAt") val deletedAt: Long?,
 )
 
 fun TransformationDTO.toTransformationModel(): TransformationModel {

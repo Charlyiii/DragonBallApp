@@ -8,9 +8,9 @@ import retrofit2.http.Path
 
 interface CharacterAPIService {
 
-    @GET("characters?limit=300")
+    @GET("character_list.json")
     suspend fun getCharacterList(): Response<CharacterListResponseDTO>
 
-    @GET("characters/{id}")
-    suspend fun getCharacterByID(@Path("id") id: Int): Response<CharacterByIDResponseDTO>
+    @GET("character/{characterId}.json")
+    suspend fun getCharacterByID(@Path("characterId") id: Int): Response<CharacterByIDResponseDTO>
 }
