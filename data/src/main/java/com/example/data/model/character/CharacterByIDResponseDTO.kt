@@ -19,7 +19,7 @@ data class CharacterByIDResponseDTO(
     @SerialName("name") val name: String,
     @SerialName("race") val race: String,
     @SerialName("originPlanet") val originPlanet: PlanetDTO,
-    @SerialName("transformations") val transformations: List<TransformationDTO>
+    @SerialName("transformations") val transformations: List<TransformationDTO> = listOf()
 )
 
 fun CharacterByIDResponseDTO.toCharacterModel(): CharacterModel {
@@ -27,7 +27,7 @@ fun CharacterByIDResponseDTO.toCharacterModel(): CharacterModel {
         id = id,
         image = image,
         race = race,
-        gender = race,
+        gender = gender,
         characterName = name,
         ki = ki,
         maxKi = maxKi,

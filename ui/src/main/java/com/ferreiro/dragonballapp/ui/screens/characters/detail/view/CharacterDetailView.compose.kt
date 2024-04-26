@@ -202,7 +202,6 @@ fun CharacterHeaderAndBody(character: CharacterModel) {
         HorizontalDivider(modifier = Modifier.padding(16.dp))
         CharacterDetailBody(character)
     }
-
 }
 
 @Composable

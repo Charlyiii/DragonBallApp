@@ -23,7 +23,7 @@ fun CharacterListItemDTO.toCharacterModel(): CharacterModel {
         id = id,
         image = image,
         race = race,
-        gender = race,
+        gender = gender,
         characterName = name,
         ki = ki,
         maxKi = maxKi,
