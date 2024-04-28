@@ -5,5 +5,7 @@ data class PlanetModel(
     val name: String,
     val isDestroyed: Boolean,
     val description: String,
-    val image: String? = null
+    val image: String? = null,
+    //Dragon Ball API URL
+    //val deletedAt: Long? = null
 )

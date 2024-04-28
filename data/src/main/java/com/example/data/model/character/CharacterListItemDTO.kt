@@ -15,7 +15,9 @@ data class CharacterListItemDTO(
     @SerialName("ki") val ki: String,
     @SerialName("maxKi") val maxKi: String,
     @SerialName("name") val name: String,
-    @SerialName("race") val race: String
+    @SerialName("race") val race: String,
+    //Dragon Ball API URL
+    //@SerialName("deletedAt") val deletedAt: Long? = null
 )
 
 fun CharacterListItemDTO.toCharacterModel(): CharacterModel {

@@ -248,7 +248,7 @@ fun CharacterDetailViewPreview() {
     CharacterDetailView(
         character = CharacterModel(
             id = 0,
-            image = R.drawable.goku_preview.toString(), //TODO: Cambiar a URL de imagen,
+            image = "https://dragonball-api.com/characters/goku_normal.webp", //TODO: Cambiar a URL de imagen,
             race = "Saiyan",
             gender = "Male",
             characterName = "Goku",

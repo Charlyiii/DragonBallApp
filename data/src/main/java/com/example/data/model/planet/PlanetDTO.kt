@@ -10,7 +10,9 @@ data class PlanetDTO(
    @SerialName ("name") val name: String,
    @SerialName ("isDestroyed") val isDestroyed: Boolean,
    @SerialName ("description") val description: String,
-   @SerialName ("image") val image: String
+   @SerialName ("image") val image: String,
+   //Dragon Ball API URL
+   @SerialName ("deletedAt") val deletedAt: Long? = null
 )
 
 fun PlanetDTO.toPlanetModel(): PlanetModel {
@@ -19,6 +21,7 @@ fun PlanetDTO.toPlanetModel(): PlanetModel {
        name = name,
        isDestroyed = isDestroyed,
        description = description,
-       image = image
+       image = image,
+       //deletedAt = deletedAt
    )
 }

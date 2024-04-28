@@ -19,8 +19,14 @@ data class CharacterByIDResponseDTO(
     @SerialName("name") val name: String,
     @SerialName("race") val race: String,
     @SerialName("originPlanet") val originPlanet: PlanetDTO,
+    //My Firebase Realtime Database URL
     @SerialName("transformations") val transformations: List<TransformationDTO> = listOf()
-)
+    //Dragon Ball API URL
+    /*
+    @SerialName("transformations") val transformations: List<TransformationDTO>,
+    @SerialName("deletedAt") val deletedAt: Long? = null
+    */
+    )
 
 fun CharacterByIDResponseDTO.toCharacterModel(): CharacterModel {
     return CharacterModel(
@@ -34,6 +40,8 @@ fun CharacterByIDResponseDTO.toCharacterModel(): CharacterModel {
         affiliation = affiliation.toAffiliationEnum(),
         description = description,
         originPlanet = originPlanet.toPlanetModel(),
-        transformations = transformations.map { it.toTransformationModel() }
+        transformations = transformations.map { it.toTransformationModel() },
+        //Dragon Ball API URL
+        //deletedAt = deletedAt
     )
 }

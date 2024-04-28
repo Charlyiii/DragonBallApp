@@ -12,6 +12,8 @@ data class CharacterModel(
     val description: String,
     val originPlanet: PlanetModel? = null,
     val transformations: List<TransformationModel>? = null,
+    //Dragon Ball API URL
+    val deletedAt: Long? = null
 )
 
 enum class Affiliation {

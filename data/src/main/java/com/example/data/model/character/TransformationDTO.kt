@@ -10,6 +10,8 @@ data class TransformationDTO(
     @SerialName("name") val name: String,
     @SerialName("image") val image: String,
     @SerialName("ki") val ki: String,
+    //Dragon Ball API URL
+   // @SerialName("deletedAt") val deletedAt: Long? = null
 )
 
 fun TransformationDTO.toTransformationModel(): TransformationModel {
@@ -18,5 +20,6 @@ fun TransformationDTO.toTransformationModel(): TransformationModel {
         name = name,
         image = image,
         ki = ki
+        //deletedAt = deletedAt
     )
 }
