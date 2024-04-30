@@ -1,4 +1,4 @@
-package com.example.data.model.common.characterList
+package com.example.data.model.common.responseList
 
 import com.example.data.model.character.CharacterListItemDTO
 import kotlinx.serialization.SerialName

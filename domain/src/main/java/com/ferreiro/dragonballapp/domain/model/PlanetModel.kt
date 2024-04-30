@@ -6,6 +6,7 @@ data class PlanetModel(
     val isDestroyed: Boolean,
     val description: String,
     val image: String? = null,
+    val characterList: List<Int> = emptyList()
     //Dragon Ball API URL
     //val deletedAt: Long? = null
 )

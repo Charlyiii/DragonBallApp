@@ -1,7 +1,7 @@
 package com.example.data.service
 
 import com.example.data.model.character.CharacterByIDResponseDTO
-import com.example.data.model.common.characterList.CharacterListResponseDTO
+import com.example.data.model.common.responseList.CharacterListResponseDTO
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

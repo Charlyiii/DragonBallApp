@@ -1,7 +1,7 @@
 package com.example.data.model.character
 
 import com.example.data.common.extensions.toAffiliationEnum
-import com.example.data.model.planet.PlanetDTO
+import com.example.data.model.planet.PlanetListItemDTO
 import com.example.data.model.planet.toPlanetModel
 import com.ferreiro.dragonballapp.domain.model.CharacterModel
 import kotlinx.serialization.SerialName
@@ -18,7 +18,7 @@ data class CharacterByIDResponseDTO(
     @SerialName("maxKi") val maxKi: String,
     @SerialName("name") val name: String,
     @SerialName("race") val race: String,
-    @SerialName("originPlanet") val originPlanet: PlanetDTO,
+    @SerialName("originPlanet") val originPlanet: PlanetListItemDTO,
     //My Firebase Realtime Database URL
     @SerialName("transformations") val transformations: List<TransformationDTO> = listOf()
     //Dragon Ball API URL

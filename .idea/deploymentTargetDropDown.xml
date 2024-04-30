@@ -5,10 +5,13 @@
       <entry key="CharacterDetailViewPreview">
         <State />
       </entry>
-      <entry key="CharacterListItemPreview">
+      <entry key="CharacterListViewPreview">
         <State />
       </entry>
-      <entry key="CharacterListViewPreview">
+      <entry key="PlanetListItemPreview">
+        <State />
+      </entry>
+      <entry key="PlanetListViewPreview">
         <State />
       </entry>
       <entry key="TransformationItemViewPreview">

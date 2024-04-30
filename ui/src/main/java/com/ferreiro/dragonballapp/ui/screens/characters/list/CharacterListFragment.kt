@@ -44,7 +44,6 @@ class CharacterListFragment : Fragment() {
                                     showTopAppBar = { showTopAppBar(activity as MainActivity) }
                                 ){
                                     val characterID = it.id
-                                    Toast.makeText(context, "Character ID: $characterID", Toast.LENGTH_SHORT).show()
                                     findNavController().navigate(
                                         CharacterListFragmentDirections.actionCharacterListFragmentToCharacterDetailFragment(
                                             characterId = characterID

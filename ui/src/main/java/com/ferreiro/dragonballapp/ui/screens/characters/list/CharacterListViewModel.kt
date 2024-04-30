@@ -38,8 +38,8 @@ class CharacterListViewModel @Inject constructor(
             }
         }
     }
-
 }
+
 sealed interface CharacterListState {
     data class Success(val characterList: List<CharacterModel>) : CharacterListState
     data class Error(val error: ErrorModel) : CharacterListState

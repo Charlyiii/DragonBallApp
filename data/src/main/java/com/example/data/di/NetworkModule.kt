@@ -2,6 +2,7 @@ package com.example.data.di
 
 import com.example.data.common.NetworkConfig
 import com.example.data.service.CharacterAPIService
+import com.example.data.service.PlanetAPIService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
@@ -60,5 +61,14 @@ object NetworkModule {
     @Singleton
     fun provideCharacterAPIService(retrofit: Retrofit): CharacterAPIService {
         return retrofit.create(CharacterAPIService::class.java)
+    }
+
+    /**
+     * Provides the [PlanetAPIService] for making API requests to manage data about characters.
+     */
+    @Provides
+    @Singleton
+    fun providePlanetAPIService(retrofit: Retrofit): PlanetAPIService {
+        return retrofit.create(PlanetAPIService::class.java)
     }
 }

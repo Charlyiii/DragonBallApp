@@ -5,17 +5,17 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class PlanetDTO(
+data class PlanetListItemDTO(
    @SerialName ("id") val id: Int,
    @SerialName ("name") val name: String,
    @SerialName ("isDestroyed") val isDestroyed: Boolean,
    @SerialName ("description") val description: String,
    @SerialName ("image") val image: String,
    //Dragon Ball API URL
-   @SerialName ("deletedAt") val deletedAt: Long? = null
+   //@SerialName ("deletedAt") val deletedAt: Long? = null
 )
 
-fun PlanetDTO.toPlanetModel(): PlanetModel {
+fun PlanetListItemDTO.toPlanetModel(): PlanetModel {
    return PlanetModel(
        id = id,
        name = name,
