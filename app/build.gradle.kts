@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.dragonballapp"
+    namespace = "com.ferriero.dragonballapp"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.dragonballapp"
+        applicationId = "com.ferreiro.dragonballapp"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -29,6 +29,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
     compileOptions {

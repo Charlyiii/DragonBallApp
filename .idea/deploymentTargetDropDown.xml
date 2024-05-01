@@ -2,19 +2,19 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="CarouselItemViewPreview">
+        <State />
+      </entry>
       <entry key="CharacterDetailViewPreview">
         <State />
       </entry>
-      <entry key="CharacterListViewPreview">
+      <entry key="PlanetDetailViewPreview">
         <State />
       </entry>
       <entry key="PlanetListItemPreview">
         <State />
       </entry>
       <entry key="PlanetListViewPreview">
-        <State />
-      </entry>
-      <entry key="TransformationItemViewPreview">
         <State />
       </entry>
       <entry key="app">
