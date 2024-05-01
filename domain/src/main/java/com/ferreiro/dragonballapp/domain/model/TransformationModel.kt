@@ -1,5 +1,7 @@
 package com.ferreiro.dragonballapp.domain.model
 
+import java.io.Serializable
+
 data class TransformationModel(
     val id: Int,
     val name: String,
@@ -7,4 +9,4 @@ data class TransformationModel(
     val ki: String,
     //Dragon Ball API URL
     //val deletedAt: Long? = null
-)
+) : Serializable //TODO implement Parcelable (con Parcelize, mirar como añadir el plugin)

@@ -43,6 +43,9 @@
             android:id="@+id/action_characterDetailFragment_to_planetDetailFragment"
             app:destination="@id/planetDetailFragment"
             app:popUpTo="@id/characterListFragment" />
+        <action
+            android:id="@+id/action_characterDetailFragment_to_transformationDetailFragment"
+            app:destination="@id/transformationDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/planetDetailFragment"
@@ -56,5 +59,13 @@
             android:id="@+id/action_planetDetailFragment_to_characterDetailFragment"
             app:destination="@id/characterDetailFragment"
             app:popUpTo="@id/planetListFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/transformationDetailFragment"
+        android:name="com.ferreiro.dragonballapp.ui.screens.characters.detail.TransformationDetailFragment"
+        android:label="TransformationDetailFragment">
+        <argument
+            android:name="transformation"
+            app:argType="com.ferreiro.dragonballapp.domain.model.TransformationModel" />
     </fragment>
 </navigation>

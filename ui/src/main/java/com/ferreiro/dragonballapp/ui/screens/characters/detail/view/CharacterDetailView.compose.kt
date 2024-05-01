@@ -41,7 +41,8 @@ import com.ferreiro.dragonballapp.ui.theme.Typography
 @Composable
 fun CharacterDetailView(
     character: CharacterModel,
-    onClickPlanet: (PlanetModel) -> Unit = {}
+    onClickPlanet: (PlanetModel) -> Unit = {},
+    onClickTransformation: (TransformationModel) -> Unit = {}
 ) {
     Column(
         modifier = Modifier
@@ -50,7 +51,10 @@ fun CharacterDetailView(
             .background(getCharacterGradient(character.affiliation))
     ) {
         CharacterHeaderAndBody(character = character, onClickPlanet)
-        CharacterDetailFooter(character.transformations)
+        CharacterDetailFooter(
+            transformationList = character.transformations,
+            onClickTransformation = onClickTransformation
+        )
     }
 }
 
@@ -218,6 +222,7 @@ fun CharacterHeaderAndBody(
 @Composable
 fun CharacterDetailFooter(
     transformationList: List<TransformationModel>?,
+    onClickTransformation: (TransformationModel) -> Unit = {}
 ) {
     Column(
         modifier = Modifier
@@ -239,7 +244,8 @@ fun CharacterDetailFooter(
             ) {
                 items(list) { transformation ->
                     CarouselItemView(
-                        item = transformation
+                        item = transformation,
+                        onClick = onClickTransformation
                     )
                     Spacer(modifier = Modifier.width(16.dp))
                 }

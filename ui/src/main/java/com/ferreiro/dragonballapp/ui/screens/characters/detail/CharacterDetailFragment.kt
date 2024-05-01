@@ -39,14 +39,22 @@ class CharacterDetailFragment : Fragment() {
                                 is CharacterState.Success -> {
                                     CharacterDetailView(
                                         character = characterState.character,
-                                    ){
-                                        val planetID = it.id
-                                        findNavController().navigate(
-                                            CharacterDetailFragmentDirections.actionCharacterDetailFragmentToPlanetDetailFragment(
-                                                planetId = planetID
+                                        onClickPlanet = {
+                                            val planetID = it.id
+                                            findNavController().navigate(
+                                                CharacterDetailFragmentDirections.actionCharacterDetailFragmentToPlanetDetailFragment(
+                                                    planetId = planetID
+                                                )
                                             )
-                                        )
-                                    }
+                                        },
+                                        onClickTransformation = {
+                                            findNavController().navigate(
+                                                CharacterDetailFragmentDirections.actionCharacterDetailFragmentToTransformationDetailFragment(
+                                                    transformation = it
+                                                )
+                                            )
+                                        }
+                                    )
                                     setupTopAppBar(characterState.character.characterName, true, activity = activity as MainActivity)
                                     hideBottomAppBar(activity as MainActivity)
                                 }
