@@ -58,7 +58,9 @@ fun <T> CarouselItemView(
             .width(155.dp)
             .height(80.dp)
             .shadow(elevation = 5.dp)
-            .clickable { },
+            .clickable {
+                onClick(item)
+            },
         shape = MaterialTheme.shapes.extraSmall
     ) {
         Row(

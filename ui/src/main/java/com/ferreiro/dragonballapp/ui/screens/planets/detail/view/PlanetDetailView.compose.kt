@@ -1,4 +1,4 @@
-package com.ferreiro.dragonballapp.ui.screens.planets.detail.view.PlanetDetailView
+package com.ferreiro.dragonballapp.ui.screens.planets.detail.view
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -36,6 +36,7 @@ import com.ferreiro.dragonballapp.ui.theme.Typography
 @Composable
 fun PlanetDetailView(
     planet: PlanetModel,
+    onClickCharacter: (CharacterModel) -> Unit = {}
 ) {
     Column(
         modifier = Modifier
@@ -47,7 +48,8 @@ fun PlanetDetailView(
         )
         PlanetDetailFooter(
             characters = planet.characterList,
-            modifier = Modifier.weight(0.7f)
+            modifier = Modifier.weight(0.7f),
+            onClickCharacter
             )
     }
 }
@@ -140,7 +142,8 @@ fun PlanetHeaderAndBody(
 @Composable
 fun PlanetDetailFooter(
     characters: List<CharacterModel>?,
-    modifier: Modifier
+    modifier: Modifier,
+    onClickCharacter: (CharacterModel) -> Unit
 ) {
     Column(
         modifier = modifier
@@ -159,9 +162,10 @@ fun PlanetDetailFooter(
                 contentPadding = PaddingValues(start = 16.dp),
                 modifier = Modifier.padding(bottom = 16.dp),
             ) {
-                items(list) { transformation ->
+                items(list) { character ->
                     CarouselItemView(
-                        item = transformation
+                        item = character,
+                        onClick = onClickCharacter
                     )
                     Spacer(modifier = Modifier.width(16.dp))
                 }

@@ -9,6 +9,7 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.ferreiro.dragonballapp.ui.common.MainActivity
 import com.ferreiro.dragonballapp.ui.common.components.LoadingItem
@@ -38,7 +39,14 @@ class CharacterDetailFragment : Fragment() {
                                 is CharacterState.Success -> {
                                     CharacterDetailView(
                                         character = characterState.character,
-                                    )
+                                    ){
+                                        val planetID = it.id
+                                        findNavController().navigate(
+                                            CharacterDetailFragmentDirections.actionCharacterDetailFragmentToPlanetDetailFragment(
+                                                planetId = planetID
+                                            )
+                                        )
+                                    }
                                     setupTopAppBar(characterState.character.characterName, true, activity = activity as MainActivity)
                                     hideBottomAppBar(activity as MainActivity)
                                 }

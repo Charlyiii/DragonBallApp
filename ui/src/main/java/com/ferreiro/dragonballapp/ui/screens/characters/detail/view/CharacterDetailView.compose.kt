@@ -1,6 +1,7 @@
 package com.ferreiro.dragonballapp.ui.screens.characters.detail.view
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -40,14 +41,15 @@ import com.ferreiro.dragonballapp.ui.theme.Typography
 @Composable
 fun CharacterDetailView(
     character: CharacterModel,
+    onClickPlanet: (PlanetModel) -> Unit = {}
 ) {
-    Column (
+    Column(
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
             .background(getCharacterGradient(character.affiliation))
     ) {
-        CharacterHeaderAndBody(character = character)
+        CharacterHeaderAndBody(character = character, onClickPlanet)
         CharacterDetailFooter(character.transformations)
     }
 }
@@ -73,7 +75,10 @@ fun CharacterDetailHeader(character: CharacterModel) {
 }
 
 @Composable
-fun CharacterDetailBody(character: CharacterModel) {
+fun CharacterDetailBody(
+    character: CharacterModel,
+    onClickPlanet: (PlanetModel) -> Unit = {}
+) {
     Column(
         modifier = Modifier
     ) {
@@ -91,7 +96,10 @@ fun CharacterDetailBody(character: CharacterModel) {
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(100.dp)
-                            .width(100.dp),
+                            .width(100.dp)
+                            .clickable {
+                                onClickPlanet(character.originPlanet!!)
+                            },
                         model = character.originPlanet?.image,
                         contentDescription = "${character.originPlanet?.name} image",
                         error = painterResource(id = R.drawable.planets_img), //TODO R.drawable.no_image),
@@ -177,30 +185,33 @@ fun CharacterDetailBody(character: CharacterModel) {
                         )
                     }
                     HorizontalDivider(modifier = Modifier.padding(vertical = 16.dp))
-                        Text(
-                            //TODO: localizar strings
-                            text = "Descripcion: ",
-                            textAlign = TextAlign.Start,
-                            style = Typography.titleMedium
-                        )
-                        Text(
-                            text = character.description,
-                            textAlign = TextAlign.Center,
-                            fontSize = 18.sp,
-                            modifier = Modifier.padding(16.dp),
-                        )
-                    }
+                    Text(
+                        //TODO: localizar strings
+                        text = "Descripcion: ",
+                        textAlign = TextAlign.Start,
+                        style = Typography.titleMedium
+                    )
+                    Text(
+                        text = character.description,
+                        textAlign = TextAlign.Center,
+                        fontSize = 18.sp,
+                        modifier = Modifier.padding(16.dp),
+                    )
                 }
             }
         }
     }
+}
 
 @Composable
-fun CharacterHeaderAndBody(character: CharacterModel) {
-    Column{
+fun CharacterHeaderAndBody(
+    character: CharacterModel,
+    onClickPlanet: (PlanetModel) -> Unit = {}
+) {
+    Column {
         CharacterDetailHeader(character)
         HorizontalDivider(modifier = Modifier.padding(16.dp))
-        CharacterDetailBody(character)
+        CharacterDetailBody(character, onClickPlanet)
     }
 }
 

@@ -12,7 +12,7 @@ fun setupTopAppBar(titleOfScreen: String, withBackButton: Boolean, activity: Fra
         if (withBackButton) {
             setNavigationIcon(R.drawable.ic_arrow_back)
             setNavigationOnClickListener {
-                activity?.onBackPressed()
+                activity.onBackPressed()
             }
         } else {
             navigationIcon = null

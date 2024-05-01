@@ -1,23 +1,19 @@
 package com.ferreiro.dragonballapp.ui.screens.planets.detail
 
-import androidx.fragment.app.viewModels
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.platform.ComposeView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.ui.R
 import com.ferreiro.dragonballapp.ui.common.MainActivity
 import com.ferreiro.dragonballapp.ui.common.components.LoadingItem
-import com.ferreiro.dragonballapp.ui.screens.characters.detail.CharacterDetailFragmentArgs
-import com.ferreiro.dragonballapp.ui.screens.characters.detail.CharacterDetailViewModel
-import com.ferreiro.dragonballapp.ui.screens.characters.detail.CharacterState
-import com.ferreiro.dragonballapp.ui.screens.characters.detail.view.CharacterDetailView
-import com.ferreiro.dragonballapp.ui.screens.planets.detail.view.PlanetDetailView.PlanetDetailView
+import com.ferreiro.dragonballapp.ui.screens.planets.detail.view.PlanetDetailView
 import com.ferreiro.dragonballapp.ui.utils.hideBottomAppBar
 import com.ferreiro.dragonballapp.ui.utils.setupTopAppBar
 import com.ferreiro.dragonballapp.ui.utils.showTopAppBar
@@ -44,7 +40,14 @@ class PlanetDetailFragment : Fragment() {
                                 is PlanetState.Success -> {
                                     PlanetDetailView(
                                         planet = planetState.planet,
-                                    )
+                                    ){
+                                        val character = it.id
+                                        findNavController().navigate(
+                                            PlanetDetailFragmentDirections.actionPlanetDetailFragmentToCharacterDetailFragment(
+                                                characterId = character
+                                            )
+                                        )
+                                    }
                                     setupTopAppBar(planetState.planet.name, true, activity = activity as MainActivity)
                                     hideBottomAppBar(activity as MainActivity)
                                 }
