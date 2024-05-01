@@ -1,5 +1,6 @@
 package com.example.data.repository
 
+import com.example.data.model.character.toCharacterModel
 import com.example.data.model.planet.toPlanetModel
 import com.example.data.source.PlanetDataSource
 import com.ferreiro.dragonballapp.domain.model.PlanetModel
@@ -22,6 +23,22 @@ class PlanetsRepositoryImpl @Inject constructor(
                     val planetModel =  result.data.map { planetListItemDTO ->
                         planetListItemDTO.toPlanetModel()
                     }
+                    emit(Either.Success(planetModel))
+                }
+
+                is Either.Error -> {
+                    val errorModel = result.error
+                    emit(Either.Error(errorModel))
+                }
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
+    override fun getPlanetById(planetId: Int): Flow<Either<PlanetModel, ErrorModel>> {
+        return flow {
+            when (val result = planetDataSource.getPlanetByID(planetId)) {
+                is Either.Success -> {
+                    val planetModel = result.data.toPlanetModel()
                     emit(Either.Success(planetModel))
                 }
 

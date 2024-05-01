@@ -17,18 +17,39 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.ui.R
+import com.ferreiro.dragonballapp.domain.model.CharacterModel
 import com.ferreiro.dragonballapp.domain.model.TransformationModel
 import com.ferreiro.dragonballapp.ui.theme.Typography
 
 //TODO refactor
 @Composable
-fun TransformationItemView(transformation: TransformationModel) {
+fun <T> CarouselItemView(
+    item: T,
+    onClick: (T) -> Unit = {}
+) {
+    var image: String? = null
+    var name: String? = null
+    var ki: String? = null
+
+    when (item) {
+        is TransformationModel -> {
+            val transformation = item as TransformationModel
+            image = transformation.image
+            name = transformation.name
+            ki = transformation.ki
+        }
+        is CharacterModel -> {
+            val character = item as CharacterModel
+            image = character.image
+            name = character.characterName
+            ki = character.ki
+        }
+    }
     Card(
         modifier = Modifier
             .width(155.dp)
@@ -44,9 +65,11 @@ fun TransformationItemView(transformation: TransformationModel) {
                 .fillMaxWidth()
         ) {
             AsyncImage(
-                modifier = Modifier.padding(10.dp).weight(1f),
-                model = transformation.image,
-                contentDescription = "Transformation photo",
+                modifier = Modifier
+                    .padding(10.dp)
+                    .weight(1f),
+                model = image,
+                contentDescription = "Item photo",
                 error = painterResource(id = R.drawable.no_image)
             )
             Column(
@@ -54,21 +77,31 @@ fun TransformationItemView(transformation: TransformationModel) {
                     .padding(end = 10.dp)
                     .weight(2f),
                 horizontalAlignment = Alignment.CenterHorizontally
-            ){
-                Text(
-                    text = transformation.name,
-                    style = Typography.labelMedium,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                )
-                Text(
-                    modifier = Modifier.padding(top = 5.dp),
-                    text = "KI: ${transformation.ki} ",
-                    style = Typography.labelSmall,
-                    textAlign = TextAlign.Start,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
-                )
+            ) {
+                name?.let {
+                    Text(
+                        text = it,
+                        style = Typography.labelMedium,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                }
+                ki?.let {
+                    Row {
+                        Text(
+                            text = "Ki: ",
+                            style = Typography.labelSmall,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                        )
+                        Text(
+                            text = it,
+                            style = Typography.labelSmall,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                        )
+                    }
+                }
             }
         }
     }
@@ -76,9 +109,9 @@ fun TransformationItemView(transformation: TransformationModel) {
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun TransformationItemViewPreview() {
-    TransformationItemView(
-        transformation = TransformationModel(
+fun CarouselItemViewPreview() {
+    CarouselItemView(
+        item = TransformationModel(
             id = 1,
             name = "Super Saiyan",
             image = "",

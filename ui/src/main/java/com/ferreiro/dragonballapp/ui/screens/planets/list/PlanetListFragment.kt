@@ -45,7 +45,12 @@ class PlanetListFragment : Fragment() {
                                     hideTopAppBar = { hideTopAppBar(activity as MainActivity) },
                                     showTopAppBar = { showTopAppBar(activity as MainActivity) }
                                 ){
-
+                                    val planetID = it.id
+                                    findNavController().navigate(
+                                        PlanetListFragmentDirections.actionPlanetListFragmentToPlanetDetailFragment(
+                                            planetId = planetID
+                                        )
+                                    )
                                 }
 
                                 //TODO:  Implementar manejo de errores

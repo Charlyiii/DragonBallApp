@@ -75,7 +75,7 @@ fun CharacterListViewPreview() {
 
 val characterMock = CharacterModel(
     id = 0,
-    image = "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699044374/hlpy6q013uw3itl5jzic.webp",
+    image = "https://firebasestorage.googleapis.com/v0/b/dragonballappapi.appspot.com/o/Characters%2Fgoku1.webp?alt=media&token=a3c6c110-47f9-4286-8527-72717d440f45",
     race = "Saiyan",
     gender = "Masculino",
     characterName = "Goku",

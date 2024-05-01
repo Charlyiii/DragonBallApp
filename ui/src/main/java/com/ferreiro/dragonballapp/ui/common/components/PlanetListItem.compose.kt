@@ -35,7 +35,7 @@ fun PlanetListItem(
 ) {
     Card(
         onClick = {
-
+            onClickItem(planet)
         },
         modifier = Modifier
             .fillMaxWidth()

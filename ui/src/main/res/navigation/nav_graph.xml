@@ -26,13 +26,26 @@
     <fragment
         android:id="@+id/planetListFragment"
         android:name="com.ferreiro.dragonballapp.ui.screens.planets.list.PlanetListFragment"
-        android:label="fragment_planet_list" />
+        android:label="fragment_planet_list">
+        <action
+            android:id="@+id/action_planetListFragment_to_planetDetailFragment"
+            app:destination="@id/planetDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/characterDetailFragment"
         android:name="com.ferreiro.dragonballapp.ui.screens.characters.detail.CharacterDetailFragment"
         android:label="CharacterDetailFragment">
         <argument
             android:name="characterId"
+            android:defaultValue="-1"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/planetDetailFragment"
+        android:name="com.ferreiro.dragonballapp.ui.screens.planets.detail.PlanetDetailFragment"
+        android:label="PlanetDetailFragment">
+        <argument
+            android:name="planetId"
             android:defaultValue="-1"
             app:argType="integer" />
     </fragment>

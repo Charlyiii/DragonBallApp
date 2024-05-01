@@ -31,7 +31,7 @@ import com.ferreiro.dragonballapp.domain.model.Affiliation
 import com.ferreiro.dragonballapp.domain.model.CharacterModel
 import com.ferreiro.dragonballapp.domain.model.PlanetModel
 import com.ferreiro.dragonballapp.domain.model.TransformationModel
-import com.ferreiro.dragonballapp.ui.common.components.TransformationItemView
+import com.ferreiro.dragonballapp.ui.common.components.CarouselItemView
 import com.ferreiro.dragonballapp.ui.common.components.getCharacterGradient
 import com.ferreiro.dragonballapp.ui.common.extensions.toReadableString
 import com.ferreiro.dragonballapp.ui.theme.Typography
@@ -227,8 +227,8 @@ fun CharacterDetailFooter(
                 modifier = Modifier.padding(bottom = 16.dp),
             ) {
                 items(list) { transformation ->
-                    TransformationItemView(
-                        transformation = transformation
+                    CarouselItemView(
+                        item = transformation
                     )
                     Spacer(modifier = Modifier.width(16.dp))
                 }
