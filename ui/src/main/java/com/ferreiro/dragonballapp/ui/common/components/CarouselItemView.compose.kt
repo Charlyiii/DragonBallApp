@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -16,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -43,6 +45,7 @@ fun <T> CarouselItemView(
             name = transformation.name
             ki = transformation.ki
         }
+
         is CharacterModel -> {
             val character = item as CharacterModel
             image = character.image
@@ -53,7 +56,7 @@ fun <T> CarouselItemView(
     Card(
         modifier = Modifier
             .width(155.dp)
-            .height(70.dp)
+            .height(80.dp)
             .shadow(elevation = 5.dp)
             .clickable { },
         shape = MaterialTheme.shapes.extraSmall
@@ -62,16 +65,17 @@ fun <T> CarouselItemView(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .background(Color.White)
-                .fillMaxWidth()
+                .fillMaxSize()
         ) {
             AsyncImage(
                 modifier = Modifier
-                    .padding(10.dp)
+                    .padding(start = 10.dp)
                     .weight(1f),
                 model = image,
                 contentDescription = "Item photo",
-                error = painterResource(id = R.drawable.no_image)
-            )
+                error = painterResource(id = R.drawable.no_image),
+
+                )
             Column(
                 modifier = Modifier
                     .padding(end = 10.dp)
