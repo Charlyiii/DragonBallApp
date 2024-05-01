@@ -216,7 +216,7 @@ fun CharacterDetailFooter(
             modifier = Modifier
                 .padding(15.dp)
                 .fillMaxWidth(),
-            text = "Transformations",
+            text = "Transformaciones",
             textAlign = TextAlign.Center,
             style = Typography.titleLarge
         )

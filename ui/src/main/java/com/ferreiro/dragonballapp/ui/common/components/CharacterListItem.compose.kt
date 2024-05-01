@@ -142,7 +142,7 @@ fun getCharacterGradient(affiliation: Affiliation): Brush {
         Affiliation.ASSISTANT_OF_VERMOUD -> Brush.verticalGradient(colors = listOf(Color.Red, Color(0xFF4F68F3)))
         Affiliation.GOD -> Brush.verticalGradient(colors = listOf(Color.Yellow, Color(0xFF4F68F3)))
         Affiliation.VILLAIN -> Brush.verticalGradient(colors = listOf(Color.DarkGray, Color.Gray))
-        Affiliation.OTHER -> Brush.verticalGradient(colors = listOf(Color.LightGray, Color.Black))
+        Affiliation.OTHER -> Brush.verticalGradient(colors = listOf(Color.LightGray, Color.White))
     }
 }
 
