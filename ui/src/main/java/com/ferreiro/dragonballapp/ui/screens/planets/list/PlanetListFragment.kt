@@ -14,6 +14,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.ui.R
 import com.ferreiro.dragonballapp.ui.common.MainActivity
 import com.ferreiro.dragonballapp.ui.common.components.LoadingItem
+import com.ferreiro.dragonballapp.ui.common.extensions.showToast
+import com.ferreiro.dragonballapp.ui.common.extensions.toErrorMessage
 import com.ferreiro.dragonballapp.ui.screens.characters.list.CharacterListFragmentDirections
 import com.ferreiro.dragonballapp.ui.screens.characters.list.CharacterListState
 import com.ferreiro.dragonballapp.ui.screens.characters.list.view.CharacterListView
@@ -53,13 +55,8 @@ class PlanetListFragment : Fragment() {
                                     )
                                 }
 
-                                //TODO:  Implementar manejo de errores
                                 is PlanetListState.Error -> {
-                                    Toast.makeText(
-                                        context,
-                                        "Error: ${planetListState.error}",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
+                                    showToast(toErrorMessage(planetListState.error))
                                 }
 
                                 is PlanetListState.Loading -> LoadingItem()

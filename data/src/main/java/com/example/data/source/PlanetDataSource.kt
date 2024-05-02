@@ -21,7 +21,7 @@ class PlanetDataSource @Inject constructor(
                 Either.Success(planetListDTO)
             }
         } else {
-            Either.Error(ErrorModel.CommonError(response.message()))
+            Either.Error(ErrorModel.CommonError("Error getting planet list"))
         }
     }
     suspend fun getPlanetByID(id: Int): Either<PlanetByIDResponseDTO, ErrorModel>{
@@ -34,7 +34,7 @@ class PlanetDataSource @Inject constructor(
                 Either.Error(ErrorModel.CommonError("Planet not found"))
             }
         } else {
-            Either.Error(ErrorModel.CommonError(response.message()))
+            Either.Error(ErrorModel.CommonError("Error getting planet by id"))
         }
     }
 }

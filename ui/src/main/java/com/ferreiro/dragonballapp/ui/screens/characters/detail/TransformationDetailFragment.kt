@@ -12,6 +12,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.ferreiro.dragonballapp.ui.common.MainActivity
 import com.ferreiro.dragonballapp.ui.common.components.LoadingItem
+import com.ferreiro.dragonballapp.ui.common.extensions.showToast
+import com.ferreiro.dragonballapp.ui.common.extensions.toErrorMessage
 import com.ferreiro.dragonballapp.ui.screens.characters.detail.view.TransformationDetailView
 import com.ferreiro.dragonballapp.ui.utils.hideBottomAppBar
 import com.ferreiro.dragonballapp.ui.utils.setupTopAppBar
@@ -37,8 +39,7 @@ class TransformationDetailFragment : Fragment() {
                             TransformationDetailView(transformation = transformationState.transformation)
                         }
                         is TransformationState.Error -> {
-                            // Manejar el estado de error
-                            // transformationState.error contiene el Throwable
+                            showToast(toErrorMessage(transformationState.error))
                         }
                         TransformationState.Loading -> {
                             LoadingItem()

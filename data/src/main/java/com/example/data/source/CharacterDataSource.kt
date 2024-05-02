@@ -20,7 +20,7 @@ class CharacterDataSource @Inject constructor(
                 Either.Success(characterListDTO)
             }
         } else {
-            Either.Error(ErrorModel.CommonError(response.message()))
+            Either.Error(ErrorModel.CommonError("Error getting character list"))
         }
     }
 
@@ -34,7 +34,7 @@ class CharacterDataSource @Inject constructor(
                 Either.Error(ErrorModel.CommonError("Character not found"))
             }
         } else {
-            Either.Error(ErrorModel.CommonError(response.message()))
+            Either.Error(ErrorModel.CommonError("Error getting character by id"))
         }
     }
 }

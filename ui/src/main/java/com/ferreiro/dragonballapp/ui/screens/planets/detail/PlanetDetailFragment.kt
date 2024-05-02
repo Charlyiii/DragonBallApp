@@ -13,6 +13,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.ferreiro.dragonballapp.ui.common.MainActivity
 import com.ferreiro.dragonballapp.ui.common.components.LoadingItem
+import com.ferreiro.dragonballapp.ui.common.extensions.showToast
+import com.ferreiro.dragonballapp.ui.common.extensions.toErrorMessage
 import com.ferreiro.dragonballapp.ui.screens.planets.detail.view.PlanetDetailView
 import com.ferreiro.dragonballapp.ui.utils.hideBottomAppBar
 import com.ferreiro.dragonballapp.ui.utils.setupTopAppBar
@@ -52,8 +54,10 @@ class PlanetDetailFragment : Fragment() {
                                     hideBottomAppBar(activity as MainActivity)
                                 }
                                 is PlanetState.Loading -> LoadingItem()
-                                //TODO: Implementar manejo de errores
-                                is PlanetState.Error -> {}
+
+                                is PlanetState.Error -> {
+                                    showToast(toErrorMessage(planetState.error))
+                                }
                             }
                         }
                     }
