@@ -64,6 +64,7 @@ class CharacterDetailFragment : Fragment() {
 
                                 is CharacterState.Error -> {
                                     showToast(toErrorMessage(characterState.error))
+                                    findNavController().popBackStack()
                                 }
                             }
                         }

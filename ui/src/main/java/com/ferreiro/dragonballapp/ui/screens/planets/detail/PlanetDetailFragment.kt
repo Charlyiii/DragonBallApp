@@ -57,6 +57,7 @@ class PlanetDetailFragment : Fragment() {
 
                                 is PlanetState.Error -> {
                                     showToast(toErrorMessage(planetState.error))
+                                    findNavController().popBackStack()
                                 }
                             }
                         }

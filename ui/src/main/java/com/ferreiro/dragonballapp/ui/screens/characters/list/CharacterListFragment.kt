@@ -14,6 +14,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.ui.R
 import com.ferreiro.dragonballapp.ui.common.MainActivity
 import com.ferreiro.dragonballapp.ui.common.components.LoadingItem
+import com.ferreiro.dragonballapp.ui.common.extensions.showToast
+import com.ferreiro.dragonballapp.ui.common.extensions.toErrorMessage
 import com.ferreiro.dragonballapp.ui.screens.characters.list.view.CharacterListView
 import com.ferreiro.dragonballapp.ui.utils.hideBottomAppBar
 import com.ferreiro.dragonballapp.ui.utils.hideTopAppBar
@@ -53,11 +55,8 @@ class CharacterListFragment : Fragment() {
 
                                 //TODO:  Implementar manejo de errores
                                 is CharacterListState.Error -> {
-                                    Toast.makeText(
-                                        context,
-                                        "Error: ${characterListState.error}",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
+                                    showToast(toErrorMessage(characterListState.error))
+                                    findNavController().popBackStack()
                                 }
 
                                 is CharacterListState.Loading -> LoadingItem()

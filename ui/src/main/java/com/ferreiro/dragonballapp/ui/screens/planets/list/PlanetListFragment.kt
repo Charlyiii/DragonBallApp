@@ -57,6 +57,7 @@ class PlanetListFragment : Fragment() {
 
                                 is PlanetListState.Error -> {
                                     showToast(toErrorMessage(planetListState.error))
+                                    findNavController().popBackStack()
                                 }
 
                                 is PlanetListState.Loading -> LoadingItem()
