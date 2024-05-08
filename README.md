@@ -65,9 +65,10 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-## Greetingd
+## Greetings
 
-* [Antonio Álvarez López]()
+* [Antonio Álvarez López](https://github.com/intentodepirata)
+  Thank you for letting me use your API as inspiration and guidance for this project.  Thank you for always being available for my questions
 
 ## Copyright 
 All Dragon Ball characters, images, and related content featured in this project are the intellectual property of their respective creators, Akira Toriyama and Toei Animation. We acknowledge and respect their creative work. This project is a fan-created initiative and is not intended for commercial purposes. No copyright infringement is intended, and all rights to Dragon Ball belong to its rightful owners.
