@@ -1,5 +1,6 @@
 # DragonBallApp
 
+(https://github.com/Charlyiii/DragonBallApp/issues/1#issue-2286646142)
 
 Android application that allows you to consult information about characters and planets from the Dragon Ball animated series.
 
