@@ -1,6 +1,6 @@
 # DragonBallApp
 
-(https://firebasestorage.googleapis.com/v0/b/dragonballappapi.appspot.com/o/App%2FScreenshot_2024-05-09-01-37-17-608_com.ferreiro.dragonballapp.jpg?alt=media&token=0a9997e7-269d-4fbf-9486-7c3fb646c7d2)
+<img width="1200" alt="Dragon Ball App image" src="https://firebasestorage.googleapis.com/v0/b/dragonballappapi.appspot.com/o/App%2FScreenshot_2024-05-09-01-37-17-608_com.ferreiro.dragonballapp.jpg?alt=media&token=0a9997e7-269d-4fbf-9486-7c3fb646c7d2">
 
 Android application that allows you to consult information about characters and planets from the Dragon Ball animated series.
 
