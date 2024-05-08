@@ -1,4 +1,6 @@
 # DragonBallApp
+
+
 Android application that allows you to consult information about characters and planets from the Dragon Ball animated series.
 
 On my paternity leave, in order not to lose the practice of what I learned in my first months as an Android developer, in my free time (which wasn't much) I wanted to make a simple application in which the bases of Clean Architecture were used together with the MVVM pattern, using StateFlows and applying the best architectural practices for communication between the different layers, minimizing the dependencies between them.  Dependency injection is also used with Dagger Hilt. 
@@ -46,8 +48,9 @@ If any of you can think of a character to add (many are missing), or transformat
 Este proyecto está bajo la [Licencia MIT](LICENSE).
 
 ## Tecnologías:
-[![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)]()
-[![Eclipse](https://badgen.net/badge/icon/eclipse?icon=eclipse&label)](https://eclipse.org/)
+[![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white&labelColor=101010)]()
+[![Android_Studio](https://img.shields.io/badge/Android_Studio-3DDC84?style=for-the-badge&logo=android-studio&logoColor=white&labelColor=101010)]()
+[![Kotlin](https://img.shields.io/badge/Kotlin-0095D5?style=for-the-badge&logo=kotlin&logoColor=white&labelColor=101010)]()
 
 ## License
 
