@@ -44,9 +44,6 @@ If any of you can think of a character to add (many are missing), or transformat
   ]
 }
 ```
-## Licencia
-
-Este proyecto está bajo la [Licencia MIT](LICENSE).
 
 ## Tecnologías:
 [![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white&labelColor=101010)]()
