@@ -17,8 +17,6 @@ import com.ferreiro.dragonballapp.domain.model.PlanetModel
 import com.ferreiro.dragonballapp.ui.common.components.CharacterListItem
 import androidx.compose.runtime.remember
 
-//TODO Pages (en notas)
-//TODO Hacer que la appBar se esconda más suave
 @Composable
 fun CharacterListView(
     characterList: List<CharacterModel>,

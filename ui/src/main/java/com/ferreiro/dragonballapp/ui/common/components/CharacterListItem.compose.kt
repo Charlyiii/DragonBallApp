@@ -18,7 +18,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -90,7 +92,7 @@ fun ColumnScope.ListItemBody(character: CharacterModel) {
         Text(
             modifier = Modifier
                 .padding(4.dp),
-            text = "${character.race}",
+            text = character.race,
             style = Typography.titleSmall,
             color = Color(0xFFFFA000),
 
@@ -98,14 +100,14 @@ fun ColumnScope.ListItemBody(character: CharacterModel) {
         Text(
             modifier = Modifier
                 .padding(4.dp),
-            text = "Base KI: ${character.ki}",
+            text = stringResource(R.string.base_ki_label, character.ki),
             fontStyle = FontStyle.Italic,
             fontSize = 10.sp
         )
         Text(
             modifier = Modifier
                 .padding(4.dp),
-            text = "Max. KI: ${character.maxKi}",
+            text = stringResource(R.string.max_ki_label, character.maxKi),
             fontStyle = FontStyle.Italic,
             fontSize = 10.sp
         )
@@ -124,7 +126,7 @@ fun ColumnScope.ListItemFooter(character: CharacterModel) {
             modifier = Modifier
                 .padding(4.dp)
                 .align(Alignment.CenterHorizontally),
-            text = "${character.affiliation.toReadableString()}"
+            text = character.affiliation.toReadableString(context = LocalContext.current),
         )
     }
 }

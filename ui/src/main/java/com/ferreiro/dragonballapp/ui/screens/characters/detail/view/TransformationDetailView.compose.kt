@@ -14,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -31,7 +32,6 @@ fun TransformationDetailView(
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
-        //.background(getCharacterGradient(character.affiliation))
     ) {
         TransformationDetailHeader(
             transformation = transformation,
@@ -89,13 +89,11 @@ fun TransformationDetailFooter(
                         horizontalArrangement = Arrangement.Center
                     ) {
                         Text(
-                            //TODO: localizar strings
-                            text = "KI: ",
+                            text = stringResource(R.string.ki_label),
                             textAlign = TextAlign.Start,
                             style = Typography.titleMedium
                         )
                         Text(
-                            //TODO: localizar strings
                             text = transformation.ki,
                             textAlign = TextAlign.Start,
                             style = Typography.labelLarge

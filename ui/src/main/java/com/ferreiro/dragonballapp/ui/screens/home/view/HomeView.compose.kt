@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.ui.R
@@ -40,8 +41,8 @@ fun HomeViewHeader() {
     Box(modifier = Modifier.padding(bottom = 30.dp)) {
         Image(
             painter = painterResource(id = R.drawable.db_title),
-            contentDescription = "Dragon Ball App",
-            modifier = androidx.compose.ui.Modifier
+            contentDescription = stringResource(id = R.string.app_name) ,
+            modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 20.dp, start = 10.dp, end = 10.dp)
         )

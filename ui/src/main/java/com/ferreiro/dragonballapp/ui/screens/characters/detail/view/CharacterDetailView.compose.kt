@@ -24,7 +24,9 @@ import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -129,8 +131,7 @@ fun CharacterDetailBody(
                     //TODO Refactorizar texto en un componente
                     Row {
                         Text(
-                            //TODO: localizar strings
-                            text = "KI: ",
+                            text = stringResource(id = R.string.ki_label),
                             textAlign = TextAlign.Start,
                             style = Typography.titleMedium
                         )
@@ -144,7 +145,7 @@ fun CharacterDetailBody(
                     Row {
                         Text(
                             //TODO: localizar strings
-                            text = "Max KI: ",
+                            text = stringResource(R.string.max_ki_label),
                             textAlign = TextAlign.Start,
                             style = Typography.titleMedium
                         )
@@ -158,7 +159,7 @@ fun CharacterDetailBody(
                     Row {
                         Text(
                             //TODO: localizar strings
-                            text = "Raza: ",
+                            text = stringResource(R.string.raza_lable),
                             textAlign = TextAlign.Start,
                             style = Typography.titleMedium
                         )
@@ -171,13 +172,11 @@ fun CharacterDetailBody(
                     }
                     Row {
                         Text(
-                            //TODO: localizar strings
-                            text = "Genero: ",
+                            text = stringResource(R.string.gender_label),
                             textAlign = TextAlign.Start,
                             style = Typography.titleMedium
                         )
                         Text(
-                            //TODO: localizar strings
                             text = character.gender,
                             textAlign = TextAlign.Start,
                             style = Typography.labelLarge
@@ -185,22 +184,19 @@ fun CharacterDetailBody(
                     }
                     Row {
                         Text(
-                            //TODO: localizar strings
-                            text = "Faccion: ",
+                            text = stringResource(R.string.faction_label),
                             textAlign = TextAlign.Start,
                             style = Typography.titleMedium
                         )
                         Text(
-                            //TODO: localizar strings
-                            text = character.affiliation.toReadableString(),
+                            text = character.affiliation.toReadableString(context = LocalContext.current),
                             textAlign = TextAlign.Start,
                             style = Typography.labelLarge
                         )
                     }
                     HorizontalDivider(modifier = Modifier.padding(vertical = 16.dp))
                     Text(
-                        //TODO: localizar strings
-                        text = "Descripcion: ",
+                        text = stringResource(R.string.description_label),
                         textAlign = TextAlign.Start,
                         style = Typography.titleMedium
                     )
@@ -241,7 +237,7 @@ fun CharacterDetailFooter(
             modifier = Modifier
                 .padding(15.dp)
                 .fillMaxWidth(),
-            text = "Transformaciones",
+            text = stringResource(R.string.transformations),
             textAlign = TextAlign.Center,
             style = Typography.titleLarge
         )
@@ -261,7 +257,7 @@ fun CharacterDetailFooter(
             }
         } ?: Text(
             modifier = Modifier.fillMaxWidth(),
-            text = "No transformations available",
+            text = stringResource(R.string.no_tranformations_avaliable),
             textAlign = TextAlign.Center,
             style = Typography.bodyLarge
         )

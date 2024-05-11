@@ -53,7 +53,6 @@ class CharacterListFragment : Fragment() {
                                     )
                                 }
 
-                                //TODO:  Implementar manejo de errores
                                 is CharacterListState.Error -> {
                                     showToast(toErrorMessage(characterListState.error))
                                     findNavController().popBackStack()
@@ -78,5 +77,4 @@ class CharacterListFragment : Fragment() {
         showBottomAppBar(activity as MainActivity)
         super.onDestroyView()
     }
-    //TODO probar a hacer que las barras solo se oculten al hacer scroll
 }

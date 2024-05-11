@@ -9,4 +9,4 @@ data class TransformationModel(
     val ki: String,
     //Dragon Ball API URL
     //val deletedAt: Long? = null
-) : Serializable //TODO implement Parcelable (con Parcelize, mirar como añadir el plugin)
+) : Serializable //Could implement Parcelable (con Parcelize, mirar como añadir el plugin)

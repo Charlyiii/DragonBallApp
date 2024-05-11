@@ -19,6 +19,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -28,7 +29,6 @@ import com.ferreiro.dragonballapp.domain.model.CharacterModel
 import com.ferreiro.dragonballapp.domain.model.TransformationModel
 import com.ferreiro.dragonballapp.ui.theme.Typography
 
-//TODO refactor
 @Composable
 fun <T> CarouselItemView(
     item: T,
@@ -95,7 +95,7 @@ fun <T> CarouselItemView(
                 ki?.let {
                     Row {
                         Text(
-                            text = "Ki: ",
+                            text = stringResource(id = R.string.ki_label),
                             style = Typography.labelSmall,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis,

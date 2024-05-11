@@ -56,7 +56,7 @@ class HomeViewModel @Inject constructor(
                     }
 
                     is Either.Error -> {
-                        //TODO: Handle error
+                        //TODO Handle error
                     }
                 }
             }
