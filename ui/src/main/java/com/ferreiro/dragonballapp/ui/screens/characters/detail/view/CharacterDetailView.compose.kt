@@ -16,10 +16,13 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Card
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
@@ -86,9 +89,7 @@ fun CharacterDetailBody(
     Column(
         modifier = Modifier
     ) {
-        Column(
-
-        ) {
+        Column {
             Box {
                 Column(
                     modifier = Modifier
@@ -96,21 +97,29 @@ fun CharacterDetailBody(
                         .fillMaxWidth()
                 )
                 {
-                    AsyncImage(
+                    Card(
                         modifier = Modifier
-                            .fillMaxWidth()
                             .height(100.dp)
                             .width(100.dp)
+                            .shadow(elevation = 30.dp)
+                            .align(CenterHorizontally)
                             .clickable {
                                 onClickPlanet(character.originPlanet!!)
                             },
-                        model = character.originPlanet?.image,
-                        contentDescription = "${character.originPlanet?.name} image",
-                        error = painterResource(id = R.drawable.planets_img), //TODO R.drawable.no_image),
-                        contentScale = ContentScale.Inside
-                    )
+                    ) {
+                        AsyncImage(
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            model = character.originPlanet?.image,
+                            contentDescription = "${character.originPlanet?.name} image",
+                            error = painterResource(id = R.drawable.planets_img), //TODO R.drawable.no_image),
+                            contentScale = ContentScale.Crop
+                        )
+                    }
                     Text(
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp),
                         text = character.originPlanet?.name ?: "Unknown",
                         textAlign = TextAlign.Center,
                         style = Typography.labelMedium
@@ -278,8 +287,7 @@ fun CharacterDetailViewPreview() {
                 name = "Tierra",
                 description = "The planet where Goku was born",
                 isDestroyed = false,
-                image = "Espera a URL" //TODO: Cambiar a URL de imagen
-            ),
+                image = "https://firebasestorage.googleapis.com/v0/b/dragonballappapi.appspot.com/o/planets%2FTierra_Dragon_Ball_Z.webp?alt=media&token=a1c10d6c-2d87-4b8e-9566-76463f14eccb"),
             transformations = listOf(
                 TransformationModel(
                     id = 0,
