@@ -57,7 +57,7 @@ class CharacterDetailFragment : Fragment() {
                                             )
                                         }
                                     )
-                                    setupTopAppBar(characterState.character.characterName, true, activity = activity as MainActivity)
+                                    setupTopAppBar(characterState.character.characterName, withBackButton = true, activity = activity as MainActivity)
                                     hideBottomAppBar(activity as MainActivity)
                                 }
                                 is CharacterState.Loading -> LoadingItem()

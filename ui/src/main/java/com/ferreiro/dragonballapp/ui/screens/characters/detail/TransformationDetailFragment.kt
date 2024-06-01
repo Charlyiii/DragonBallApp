@@ -46,7 +46,7 @@ class TransformationDetailFragment : Fragment() {
                         }
                     }
                 }
-                setupTopAppBar(args.transformation.name, true, activity = activity as MainActivity)
+                setupTopAppBar(args.transformation.name, withBackButton = true, activity = activity as MainActivity)
                 hideBottomAppBar(activity as MainActivity)
             }
         }

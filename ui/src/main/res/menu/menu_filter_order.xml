@@ -1,0 +1,42 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_search"
+        android:title="Buscar"
+        android:icon="@drawable/ic_search"
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView" />
+    <item
+        android:id="@+id/action_sort"
+        android:title="Ordenar">
+        <menu>
+            <item
+                android:id="@+id/sort_by_affiliation"
+                android:title="Por Afiliación" />
+            <item
+                android:id="@+id/sort_by_race"
+                android:title="Por Raza" />
+            <item
+                android:id="@+id/sort_by_gender"
+                android:title="Por Género" />
+            <!-- Agrega más opciones de orden aquí -->
+        </menu>
+    </item>
+    <item
+        android:id="@+id/action_filter"
+        android:title="Filtrar">
+        <menu>
+            <item
+                android:id="@+id/filter_by_affiliation"
+                android:title="Por Afiliación" />
+            <item
+                android:id="@+id/filter_by_race"
+                android:title="Por Raza" />
+            <item
+                android:id="@+id/filter_by_gender"
+                android:title="Por Género" />
+            <!-- Agrega más opciones de filtro aquí -->
+        </menu>
+    </item>
+</menu>

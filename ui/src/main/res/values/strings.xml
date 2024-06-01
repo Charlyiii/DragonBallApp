@@ -20,12 +20,12 @@
     <string name="descripcion">"Descripcion: "</string>
     <string name="personajes">Personajes</string>
     <string name="ki_label">"KI: "</string>
-    <string name="max_ki_label">"Max KI: "</string>
+    <string name="max_ki_label">"Max KI: %1$s"</string>
     <string name="raza_lable">"Raza: "</string>
     <string name="gender_label">"Genero: "</string>
-    <string name="faction_label">"Faccion: "</string>
+    <string name="faction_label">"Facción: "</string>
     <string name="description_label">"Descripcion: "</string>
     <string name="transformations">Transformaciones</string>
     <string name="no_tranformations_avaliable">No tiene transformaciones</string>
-    <string name="base_ki_label">Base KI: %1$s</string>
+    <string name="base_ki_label">"Base KI: %1$s"</string>
 </resources>

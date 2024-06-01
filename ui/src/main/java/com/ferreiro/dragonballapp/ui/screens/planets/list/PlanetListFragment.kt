@@ -70,12 +70,12 @@ class PlanetListFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupTopAppBar(getString(R.string.planets_text), true, activity = activity as MainActivity)
+        setupTopAppBar(getString(R.string.planets_text), withBackButton = true, activity = activity as MainActivity)
         hideBottomAppBar(activity as MainActivity)
     }
 
     override fun onDestroyView() {
-        setupTopAppBar (getString(R.string.app_name), false, activity = activity as MainActivity)
+        setupTopAppBar (getString(R.string.app_name), withBackButton = true, activity = activity as MainActivity)
         showBottomAppBar(activity as MainActivity)
         super.onDestroyView()
     }

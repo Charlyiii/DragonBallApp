@@ -21,7 +21,7 @@
     <string name="descripcion">"Descripcion: "</string>
     <string name="personajes">Personajes</string>
     <string name="ki_label">"KI: "</string>
-    <string name="max_ki_label">"Max KI: "</string>
+    <string name="max_ki_label">"Max KI: %1$s"</string>
     <string name="raza_lable">"Raza: "</string>
     <string name="gender_label">"Genero: "</string>
     <string name="faction_label">"Faccion: "</string>
