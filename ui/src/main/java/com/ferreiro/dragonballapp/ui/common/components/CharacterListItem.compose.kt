@@ -42,7 +42,7 @@ fun CharacterListItem(
     Card(
         modifier = Modifier
             .height(500.dp)
-            .width(175.dp)
+            .width(200.dp)
             .padding(10.dp)
             .shadow(5.dp),
         onClick = { onClickItem(character) }
