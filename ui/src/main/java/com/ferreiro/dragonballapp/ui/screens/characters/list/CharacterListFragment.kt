@@ -37,6 +37,7 @@ import kotlinx.coroutines.launch
 class CharacterListFragment : Fragment() {
     private val viewModel: CharacterListViewModel by viewModels()
     private var groupingType by mutableStateOf(GroupingType.NONE)
+    private var isFiltering by mutableStateOf(false)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,6 +54,7 @@ class CharacterListFragment : Fragment() {
                                     //TODO
                                     //hideTopAppBar = { hideTopAppBar(activity as MainActivity) },
                                     //showTopAppBar = { showTopAppBar(activity as MainActivity) },
+                                    isFiltering = isFiltering,
                                     groupingType = groupingType // Pasar el tipo de agrupación al Composable
                                 ) {
                                     val characterID = it.id
@@ -112,48 +114,57 @@ class CharacterListFragment : Fragment() {
         races: List<String>,
         genders: List<String>
     ) {
-        val menuHost: MenuHost = requireActivity()
-        val filterOrderMenuProvider = FilterOrderMenuProvider(
-            onSortAZ = {
-                viewModel.sortAZ()
-            },
-            onSortZA = {
-                viewModel.sortZA()
-            },
-            onSortByAffiliation = {
-                viewModel.sortByAffiliation()
-            },
-            onSortByRace = {
-                viewModel.sortByRace()
-            },
-            onSortByGender = {
-                viewModel.sortByGender()
-            },
-            onFilterByAffiliation = { affiliation ->
-                viewModel.filterByAffiliation(
-                    affiliation,
-                    requireContext()
-                )
-            },
-            onFilterByGender = { gender ->
-                viewModel.filterByGender(gender)
-            },
-            onFilterByRace = { race ->
-                viewModel.filterByRace(race)
-            },
+        if (view != null && viewLifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.CREATED)) {
+            val menuHost: MenuHost = requireActivity()
+            val filterOrderMenuProvider = FilterOrderMenuProvider(
+                onSortAZ = {
+                    viewModel.sortAZ()
+                    isFiltering = true
+                },
+                onSortZA = {
+                    viewModel.sortZA()
+                    isFiltering = true
+                },
+                onSortByAffiliation = {
+                    viewModel.sortByAffiliation()
+                    isFiltering = true
+                },
+                onSortByRace = {
+                    viewModel.sortByRace()
+                    isFiltering = true
+                },
+                onSortByGender = {
+                    viewModel.sortByGender()
+                    isFiltering = true
+                },
+                onFilterByAffiliation = { affiliation ->
+                    viewModel.filterByAffiliation(
+                        affiliation,
+                        requireContext()
+                    )
+                    isFiltering = true
+                },
+                onFilterByGender = { gender ->
+                    viewModel.filterByGender(gender)
+                    isFiltering = true
+                },
+                onFilterByRace = { race ->
+                    viewModel.filterByRace(race)
+                    isFiltering = true
+                },
 
-            availableAffiliations = affiliations.map { it.toReadableString(requireContext()) },
-            availableRaces = races,
-            availableGenders = genders
-        )
+                availableAffiliations = affiliations.map { it.toReadableString(requireContext()) },
+                availableRaces = races,
+                availableGenders = genders
+            )
 
-        menuHost.addMenuProvider(
-            filterOrderMenuProvider,
-            viewLifecycleOwner,
-            Lifecycle.State.RESUMED
-        )
+            menuHost.addMenuProvider(
+                filterOrderMenuProvider,
+                viewLifecycleOwner,
+                Lifecycle.State.RESUMED
+            )
+        }
     }
-
     override fun onDestroyView() {
         setupTopAppBar(
             getString(R.string.app_name),
@@ -162,5 +173,6 @@ class CharacterListFragment : Fragment() {
         )
         showBottomAppBar(activity as MainActivity)
         super.onDestroyView()
+        isFiltering = false
     }
 }

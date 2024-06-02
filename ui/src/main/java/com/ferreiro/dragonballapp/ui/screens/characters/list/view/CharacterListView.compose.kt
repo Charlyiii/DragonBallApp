@@ -42,6 +42,7 @@ fun CharacterListView(
     characterList: List<CharacterModel>,
     //hideTopAppBar: () -> Unit = {},
     //showTopAppBar: () -> Unit = {},
+    isFiltering: Boolean = false,
     groupingType: GroupingType = GroupingType.NONE,
     onClickItem: (CharacterModel) -> Unit = {}
 ) {
@@ -55,11 +56,10 @@ fun CharacterListView(
         showTopAppBar()
     }
     */
-    LaunchedEffect(groupingType) {
-        Log.d("CharacterListView", "Grouping Type Changed: $groupingType")
-        delay(500)
-        Log.d("CharacterListView", "Scroll to top")
-        scrollState.animateScrollToItem(0)
+    if(isFiltering) {
+        LaunchedEffect(groupingType) {
+            scrollState.animateScrollToItem(0)
+        }
     }
 
     LazyColumn(
