@@ -41,6 +41,8 @@ fun showBottomAppBar(activity: FragmentActivity) {
     (activity as? MainActivity)?.setupBottomAppBar(isVisible = true)
 
 }
+// TODO Mejorar, hacer que aparezca y desaparezca la appbar al dejar de hacer scroll, tal y como está
+//   solo desapaarece y no vuelve, y esto no es lo que se espera
 
 fun hideTopAppBar(activity: FragmentActivity) {
     (activity as? MainActivity)?.setupTopAppBar(isVisible = false)

@@ -1,14 +1,15 @@
 package com.ferreiro.dragonballapp.ui.screens.characters.list.menu
 
-import android.content.Context
+import android.graphics.Color
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.EditText
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuProvider
 import com.example.ui.R
 
 class FilterOrderMenuProvider(
-    private val context: Context,
     private val onSortAZ: () -> Unit,
     private val onSortZA: () -> Unit,
     private val onSortByAffiliation: () -> Unit,
@@ -25,6 +26,15 @@ class FilterOrderMenuProvider(
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
         menu.clear()
         menuInflater.inflate(R.menu.menu_filter_order, menu)
+
+        val searchItem: MenuItem = menu.findItem(R.id.action_search)
+        val searchView: SearchView = searchItem.actionView as SearchView
+
+        // Cambia el color del texto del SearchView
+        val searchEditText: EditText = searchView.findViewById(androidx.appcompat.R.id.search_src_text)
+        searchEditText.setTextColor(Color.WHITE)
+        searchEditText.setHintTextColor(Color.WHITE)
+
     }
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
@@ -85,7 +95,6 @@ class FilterOrderMenuProvider(
                 item // Texto del elemento
             )?.apply {
                 setOnMenuItemClickListener {
-                    // Manejar la acción al hacer clic en un elemento del submenu
                     onClickAction(item)
                     true
                 }

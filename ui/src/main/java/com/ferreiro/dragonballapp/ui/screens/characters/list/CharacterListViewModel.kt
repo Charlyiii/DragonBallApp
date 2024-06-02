@@ -9,6 +9,7 @@ import com.ferreiro.dragonballapp.domain.model.error.ErrorModel
 import com.ferreiro.dragonballapp.domain.usecase.characters.GetCharacterListUseCase
 import com.ferreiro.dragonballapp.domain.utils.Either
 import com.ferreiro.dragonballapp.ui.common.extensions.toAffiliation
+import com.ferreiro.dragonballapp.ui.screens.characters.list.utils.GroupingType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -34,6 +35,9 @@ class CharacterListViewModel @Inject constructor(
     private val _availableGenders = MutableStateFlow<List<String>>(emptyList())
     val availableGenders: StateFlow<List<String>> = _availableGenders
 
+    private val _groupingType = MutableStateFlow(GroupingType.NONE)
+    val groupingType: StateFlow<GroupingType> = _groupingType
+
     init {
         getAll()
     }
@@ -58,46 +62,58 @@ class CharacterListViewModel @Inject constructor(
     fun sortAZ() {
         val sortedList = originalList.sortedBy { it.characterName }
         _stateFlow.value = CharacterListState.Success(characterList = sortedList)
+        setGroupingType(GroupingType.AZ)
     }
 
     fun sortZA() {
         val sortedList = originalList.sortedByDescending { it.characterName }
         _stateFlow.value = CharacterListState.Success(characterList = sortedList)
+        setGroupingType(GroupingType.ZA)
     }
 
     fun sortByAffiliation() {
         val sortedList = originalList.sortedBy { it.affiliation }
         _stateFlow.value = CharacterListState.Success(characterList = sortedList)
+        setGroupingType(GroupingType.AFFILIATION)
     }
 
     fun sortByRace() {
         val sortedList = originalList.sortedBy { it.race }
         _stateFlow.value = CharacterListState.Success(characterList = sortedList)
+        setGroupingType(GroupingType.RACE)
     }
 
     fun sortByGender() {
         val sortedList = originalList.sortedBy { it.gender }
         _stateFlow.value = CharacterListState.Success(characterList = sortedList)
+        setGroupingType(GroupingType.GENDER)
     }
 
     fun filterByAffiliation(affiliation: String, context: Context) {
         val sortedList = originalList.filter { it.affiliation ==  affiliation.toAffiliation(context)}
         _stateFlow.value = CharacterListState.Success(characterList = sortedList)
+        setGroupingType(GroupingType.NONE)
     }
     fun filterByRace(race: String) {
         val filteredList = originalList.filter { it.race == race }
         _stateFlow.value = CharacterListState.Success(characterList = filteredList)
+        setGroupingType(GroupingType.NONE)
     }
 
     fun filterByGender(gender: String) {
         val filteredList = originalList.filter { it.gender == gender }
         _stateFlow.value = CharacterListState.Success(characterList = filteredList)
+        setGroupingType(GroupingType.NONE)
     }
 
     private fun extractFilters() {
         _availableAffiliations.value = originalList.map { it.affiliation }.distinct()
         _availableRaces.value = originalList.map { it.race }.distinct()
         _availableGenders.value = originalList.map { it.gender }.distinct()
+    }
+
+    private fun setGroupingType(type: GroupingType) {
+        _groupingType.value = type
     }
 }
 

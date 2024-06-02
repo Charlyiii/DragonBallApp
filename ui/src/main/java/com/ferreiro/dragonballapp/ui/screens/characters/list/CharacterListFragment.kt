@@ -5,6 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.ComposeView
 import androidx.core.view.MenuHost
 import androidx.fragment.app.Fragment
@@ -20,12 +23,11 @@ import com.ferreiro.dragonballapp.ui.common.extensions.showToast
 import com.ferreiro.dragonballapp.ui.common.extensions.toErrorMessage
 import com.ferreiro.dragonballapp.ui.common.extensions.toReadableString
 import com.ferreiro.dragonballapp.ui.screens.characters.list.menu.FilterOrderMenuProvider
+import com.ferreiro.dragonballapp.ui.screens.characters.list.utils.GroupingType
 import com.ferreiro.dragonballapp.ui.screens.characters.list.view.CharacterListView
 import com.ferreiro.dragonballapp.ui.utils.hideBottomAppBar
-import com.ferreiro.dragonballapp.ui.utils.hideTopAppBar
 import com.ferreiro.dragonballapp.ui.utils.setupTopAppBar
 import com.ferreiro.dragonballapp.ui.utils.showBottomAppBar
-import com.ferreiro.dragonballapp.ui.utils.showTopAppBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
@@ -34,6 +36,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class CharacterListFragment : Fragment() {
     private val viewModel: CharacterListViewModel by viewModels()
+    private var groupingType by mutableStateOf(GroupingType.NONE)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,8 +50,10 @@ class CharacterListFragment : Fragment() {
                             when (characterListState) {
                                 is CharacterListState.Success -> CharacterListView(
                                     characterList = characterListState.characterList,
-                                    hideTopAppBar = { hideTopAppBar(activity as MainActivity) },
-                                    showTopAppBar = { showTopAppBar(activity as MainActivity) }
+                                    //TODO
+                                    //hideTopAppBar = { hideTopAppBar(activity as MainActivity) },
+                                    //showTopAppBar = { showTopAppBar(activity as MainActivity) },
+                                    groupingType = groupingType // Pasar el tipo de agrupación al Composable
                                 ) {
                                     val characterID = it.id
                                     findNavController().navigate(
@@ -93,6 +98,13 @@ class CharacterListFragment : Fragment() {
                 }
             }
         }
+
+        // Observa el tipo de agrupación en el ViewModel
+        lifecycleScope.launch {
+            viewModel.groupingType.collect { type ->
+                groupingType = type // Actualizar el tipo de agrupación
+            }
+        }
     }
 
     private fun setupMenu(
@@ -102,15 +114,33 @@ class CharacterListFragment : Fragment() {
     ) {
         val menuHost: MenuHost = requireActivity()
         val filterOrderMenuProvider = FilterOrderMenuProvider(
-            context = requireContext(),
-            onSortAZ = { viewModel.sortAZ() },
-            onSortZA = { viewModel.sortZA() },
-            onSortByAffiliation = { viewModel.sortByAffiliation() },
-            onSortByRace = { viewModel.sortByRace() },
-            onSortByGender = { viewModel.sortByGender() },
-            onFilterByAffiliation = { affiliation -> viewModel.filterByAffiliation(affiliation, requireContext()) },
-            onFilterByGender = { gender -> viewModel.filterByGender(gender) },
-            onFilterByRace = { race -> viewModel.filterByRace(race) },
+            onSortAZ = {
+                viewModel.sortAZ()
+            },
+            onSortZA = {
+                viewModel.sortZA()
+            },
+            onSortByAffiliation = {
+                viewModel.sortByAffiliation()
+            },
+            onSortByRace = {
+                viewModel.sortByRace()
+            },
+            onSortByGender = {
+                viewModel.sortByGender()
+            },
+            onFilterByAffiliation = { affiliation ->
+                viewModel.filterByAffiliation(
+                    affiliation,
+                    requireContext()
+                )
+            },
+            onFilterByGender = { gender ->
+                viewModel.filterByGender(gender)
+            },
+            onFilterByRace = { race ->
+                viewModel.filterByRace(race)
+            },
 
             availableAffiliations = affiliations.map { it.toReadableString(requireContext()) },
             availableRaces = races,
