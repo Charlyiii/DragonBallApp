@@ -12,6 +12,12 @@
         android:title="Ordenar">
         <menu>
             <item
+                android:id="@+id/sort_AZ"
+                android:title="A-Z" />
+            <item
+                android:id="@+id/sort_ZA"
+                android:title="Z-A" />
+            <item
                 android:id="@+id/sort_by_affiliation"
                 android:title="Por Afiliación" />
             <item
@@ -29,14 +35,94 @@
         <menu>
             <item
                 android:id="@+id/filter_by_affiliation"
-                android:title="Por Afiliación" />
+                android:title="Por Afiliación" >
+                <menu>
+                    <item
+                        android:id="@+id/affiliation_item1"
+                        android:title="" />
+                    <item
+                        android:id="@+id/affiliation_item2"
+                        android:title="" />
+                    <item
+                        android:id="@+id/affiliation_item3"
+                        android:title="" />
+                    <item
+                        android:id="@+id/affiliation_item4"
+                        android:title="" />
+                    <item
+                        android:id="@+id/affiliation_item6"
+                        android:title="" />
+                    <item
+                        android:id="@+id/affiliation_item7"
+                        android:title="" />
+                    <item
+                        android:id="@+id/affiliation_item8"
+                        android:title="" />
+                    <item
+                        android:id="@+id/affiliation_item9"
+                        android:title="" />
+                    <item
+                        android:id="@+id/affiliation_item10"
+                        android:title="" />
+                    <item
+                        android:id="@+id/affiliation_item11"
+                        android:title="" />
+                </menu>
+            </item>
             <item
                 android:id="@+id/filter_by_race"
-                android:title="Por Raza" />
+                android:title="Por Raza">
+                <menu>
+                    <item
+                        android:id="@+id/race_item1"
+                        android:title="" />
+                    <item
+                        android:id="@+id/race_item2"
+                        android:title="" />
+                    <item
+                        android:id="@+id/race_item3"
+                        android:title="" />
+                    <item
+                        android:id="@+id/race_item4"
+                        android:title="" />
+                    <item
+                        android:id="@+id/race_item6"
+                        android:title="" />
+                    <item
+                        android:id="@+id/race_item7"
+                        android:title="" />
+                    <item
+                        android:id="@+id/race_item8"
+                        android:title="" />
+                    <item
+                        android:id="@+id/race_item9"
+                        android:title="" />
+                    <item
+                        android:id="@+id/race_item10"
+                        android:title="" />
+                    <item
+                        android:id="@+id/race_item11"
+                        android:title="" />
+                </menu>
+            </item>
             <item
                 android:id="@+id/filter_by_gender"
-                android:title="Por Género" />
-            <!-- Agrega más opciones de filtro aquí -->
+                android:title="Por Género">
+                <menu>
+                <item
+                    android:id="@+id/gender_item1"
+                    android:title="" />
+                <item
+                    android:id="@+id/gender_item2"
+                    android:title="" />
+                <item
+                    android:id="@+id/gender_item3"
+                    android:title="" />
+                <item
+                    android:id="@+id/gender_item4"
+                    android:title="" />
+                </menu>
+            </item>
         </menu>
     </item>
 </menu>

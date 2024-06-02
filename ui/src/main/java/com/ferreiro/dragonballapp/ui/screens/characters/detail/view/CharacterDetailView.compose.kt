@@ -145,7 +145,7 @@ fun CharacterDetailBody(
                     Row {
                         Text(
                             //TODO: localizar strings
-                            text = stringResource(R.string.max_ki_label),
+                            text = stringResource(R.string.detail_max_ki_label),
                             textAlign = TextAlign.Start,
                             style = Typography.titleMedium
                         )

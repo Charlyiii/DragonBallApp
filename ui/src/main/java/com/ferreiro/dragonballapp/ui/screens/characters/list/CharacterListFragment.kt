@@ -2,26 +2,23 @@ package com.ferreiro.dragonballapp.ui.screens.characters.list
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.platform.ComposeView
 import androidx.core.view.MenuHost
-import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.ui.R
+import com.ferreiro.dragonballapp.domain.model.Affiliation
 import com.ferreiro.dragonballapp.ui.common.MainActivity
 import com.ferreiro.dragonballapp.ui.common.components.LoadingItem
 import com.ferreiro.dragonballapp.ui.common.extensions.showToast
 import com.ferreiro.dragonballapp.ui.common.extensions.toErrorMessage
+import com.ferreiro.dragonballapp.ui.common.extensions.toReadableString
 import com.ferreiro.dragonballapp.ui.screens.characters.list.menu.FilterOrderMenuProvider
 import com.ferreiro.dragonballapp.ui.screens.characters.list.view.CharacterListView
 import com.ferreiro.dragonballapp.ui.utils.hideBottomAppBar
@@ -30,13 +27,14 @@ import com.ferreiro.dragonballapp.ui.utils.setupTopAppBar
 import com.ferreiro.dragonballapp.ui.utils.showBottomAppBar
 import com.ferreiro.dragonballapp.ui.utils.showTopAppBar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-//TODO Crear un BaseListFragment para reutilizar el código de la configuración del appbar
 class CharacterListFragment : Fragment() {
     private val viewModel: CharacterListViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -84,51 +82,39 @@ class CharacterListFragment : Fragment() {
         )
         hideBottomAppBar(activity as MainActivity)
 
-        // Filter Menu
+        // Observa las listas de opciones en el ViewModel
+        lifecycleScope.launch {
+            viewModel.availableAffiliations.collectLatest { affiliations ->
+                viewModel.availableRaces.collectLatest { races ->
+                    viewModel.availableGenders.collectLatest { genders ->
+                        delay(2000)
+                        setupMenu(affiliations, races, genders)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun setupMenu(
+        affiliations: List<Affiliation>,
+        races: List<String>,
+        genders: List<String>
+    ) {
         val menuHost: MenuHost = requireActivity()
         val filterOrderMenuProvider = FilterOrderMenuProvider(
-            onSortByAffiliation = {
-                Toast.makeText(
-                    requireContext(),
-                    "Ordenar por afiliación",
-                    Toast.LENGTH_SHORT
-                ).show()
-            },
-            onSortByRace = {
-                Toast.makeText(
-                    requireContext(),
-                    "Ordenar por raza",
-                    Toast.LENGTH_SHORT
-                ).show()
-            },
-            onSortByGender = {
-                Toast.makeText(
-                    requireContext(),
-                    "Ordenar por género",
-                    Toast.LENGTH_SHORT
-                ).show()
-            },
-            onFilterByAffiliation = {
-                Toast.makeText(
-                    requireContext(),
-                    "Filtrar por afiliación",
-                    Toast.LENGTH_SHORT
-                ).show()
-            },
-            onFilterByGender = {
-                Toast.makeText(
-                    requireContext(),
-                    "Filtrar por género",
-                    Toast.LENGTH_SHORT
-                ).show()
-            },
-            onFilterByRace = {
-                Toast.makeText(
-                    requireContext(),
-                    "Filtrar por raza",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+            context = requireContext(),
+            onSortAZ = { viewModel.sortAZ() },
+            onSortZA = { viewModel.sortZA() },
+            onSortByAffiliation = { viewModel.sortByAffiliation() },
+            onSortByRace = { viewModel.sortByRace() },
+            onSortByGender = { viewModel.sortByGender() },
+            onFilterByAffiliation = { affiliation -> viewModel.filterByAffiliation(affiliation, requireContext()) },
+            onFilterByGender = { gender -> viewModel.filterByGender(gender) },
+            onFilterByRace = { race -> viewModel.filterByRace(race) },
+
+            availableAffiliations = affiliations.map { it.toReadableString(requireContext()) },
+            availableRaces = races,
+            availableGenders = genders
         )
 
         menuHost.addMenuProvider(
