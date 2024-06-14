@@ -8,13 +8,13 @@
       <entry key="CharacterDetailViewPreview">
         <State />
       </entry>
+      <entry key="CharacterListItemPreview">
+        <State />
+      </entry>
+      <entry key="CharacterListViewPreview">
+        <State />
+      </entry>
       <entry key="PlanetDetailViewPreview">
-        <State />
-      </entry>
-      <entry key="PlanetListItemPreview">
-        <State />
-      </entry>
-      <entry key="PlanetListViewPreview">
         <State />
       </entry>
       <entry key="app">

@@ -1,54 +1,124 @@
 package com.ferreiro.dragonballapp.ui.screens.characters.list.view
 
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
+import android.util.Log
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.withFrameMillis
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.ferreiro.dragonballapp.domain.model.Affiliation
 import com.ferreiro.dragonballapp.domain.model.CharacterModel
 import com.ferreiro.dragonballapp.domain.model.PlanetModel
 import com.ferreiro.dragonballapp.ui.common.components.CharacterListItem
-import androidx.compose.runtime.remember
+import com.ferreiro.dragonballapp.ui.common.extensions.toReadableString
+import com.ferreiro.dragonballapp.ui.screens.characters.list.utils.GroupingType
+import com.ferreiro.dragonballapp.ui.theme.dbz_font
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
 
+//TODO Refactor
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun CharacterListView(
     characterList: List<CharacterModel>,
-    hideTopAppBar: () -> Unit = {},
-    showTopAppBar: () -> Unit = {},
+    //hideTopAppBar: () -> Unit = {},
+    //showTopAppBar: () -> Unit = {},
+    isFiltering: Boolean = false,
+    groupingType: GroupingType = GroupingType.NONE,
     onClickItem: (CharacterModel) -> Unit = {}
 ) {
-    val scrollState = rememberLazyGridState()
+    val scrollState = rememberLazyListState()
+    val groupedCharacterList = groupCharacters(characterList, groupingType)
 
-    val showTopAppBarState by remember {
-        derivedStateOf {
-            scrollState.firstVisibleItemIndex > 0
-        }
-    }
-
+    /*TODO mejorar, hacer que al dejar de hacer scroll se muestre
     if(showTopAppBarState) {
         hideTopAppBar()
     } else {
         showTopAppBar()
     }
-
-    LazyVerticalGrid(
-        state = scrollState,
-        modifier = Modifier.padding(horizontal = 10.dp),
-        columns = GridCells.Fixed(2),
-    ) {
-        items(characterList) { character ->
-            CharacterListItem(
-                character = character,
-                onClickItem = onClickItem
-            )
+    */
+    if(isFiltering) {
+        LaunchedEffect(groupingType) {
+            scrollState.animateScrollToItem(0)
         }
+    }
+
+    LazyColumn(
+        state = scrollState,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        groupedCharacterList.forEach { (headText, gridItems) ->
+            if (groupingType != GroupingType.NONE) {
+                stickyHeader {
+                    val formattedHeader = when (groupingType) {
+                        GroupingType.AFFILIATION -> (headText as Affiliation).toReadableString(LocalContext.current)
+                        else -> headText.toString()
+                    }
+                    Text(
+                        text = formattedHeader,
+                        modifier = Modifier
+                            .background(Color.LightGray)
+                            .fillMaxWidth(),
+                        textAlign = TextAlign.Center,
+                        fontFamily = dbz_font,
+                    )
+                }
+            }
+
+            items(gridItems.chunked(2)) { rowItems ->
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    rowItems.forEach { gridItem ->
+                        CharacterGridItem(gridItem, onClickItem = onClickItem)
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun CharacterGridItem(character: CharacterModel, onClickItem: (CharacterModel) -> Unit = {}) {
+    // Implementa aquí cómo mostrar un elemento individual en la cuadrícula
+    CharacterListItem(
+        character = character,
+        onClickItem = onClickItem
+    )
+}
+
+private fun groupCharacters(
+    characterList: List<CharacterModel>,
+    groupingType: GroupingType
+): Map<Any, List<CharacterModel>> {
+    return when (groupingType) {
+        GroupingType.AZ -> characterList.groupBy { it.characterName.first().toString() }
+        GroupingType.ZA -> characterList.groupBy { it.characterName.first().toString() }
+        GroupingType.AFFILIATION -> characterList.groupBy { it.affiliation }
+        GroupingType.RACE -> characterList.groupBy { it.race }
+        GroupingType.GENDER -> characterList.groupBy { it.gender }
+        else -> mapOf("All" to characterList)
     }
 }
 

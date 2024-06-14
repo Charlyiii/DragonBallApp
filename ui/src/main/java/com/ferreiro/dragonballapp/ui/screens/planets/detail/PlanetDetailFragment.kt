@@ -50,7 +50,7 @@ class PlanetDetailFragment : Fragment() {
                                             )
                                         )
                                     }
-                                    setupTopAppBar(planetState.planet.name, true, activity = activity as MainActivity)
+                                    setupTopAppBar(planetState.planet.name, withBackButton = true, activity = activity as MainActivity)
                                     hideBottomAppBar(activity as MainActivity)
                                 }
                                 is PlanetState.Loading -> LoadingItem()
