@@ -115,6 +115,15 @@ class CharacterListViewModel @Inject constructor(
     private fun setGroupingType(type: GroupingType) {
         _groupingType.value = type
     }
+
+    fun filterByQuery(query: String) {
+        val filteredList = if (query.isEmpty()) {
+            originalList
+        } else {
+            originalList.filter { it.characterName.startsWith(query, ignoreCase = true) }
+        }
+        _stateFlow.value = CharacterListState.Success(characterList = filteredList)
+    }
 }
 
 sealed interface CharacterListState {

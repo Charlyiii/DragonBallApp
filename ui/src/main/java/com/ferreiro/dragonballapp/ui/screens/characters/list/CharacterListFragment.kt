@@ -155,7 +155,11 @@ class CharacterListFragment : Fragment() {
 
                 availableAffiliations = affiliations.map { it.toReadableString(requireContext()) },
                 availableRaces = races,
-                availableGenders = genders
+                availableGenders = genders,
+                onSearchTextChange = { newText ->
+                    viewModel.filterByQuery(newText)
+                    isFiltering = true
+                }
             )
 
             menuHost.addMenuProvider(
