@@ -1,0 +1,41 @@
+name: Build Android APK
+
+on:
+  workflow_dispatch: # Permite ejecución manual desde GitHub
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Configurar el repositorio
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # 2. Configurar JDK
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'zulu'
+
+    # 3. Configurar caché de Gradle
+    - name: Cache Gradle files
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+        restore-keys: gradle-
+
+    # 4. Compilar el APK
+    - name: Build APK
+      run: ./gradlew assembleDebug
+
+    # 5. Cargar artefactos (APK generado)
+    - name: Upload APK
+      uses: actions/upload-artifact@v3
+      with:
+        name: app-debug.apk
+        path: app/build/outputs/apk/debug/app-debug.apk
